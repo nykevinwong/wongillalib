@@ -1,0 +1,27 @@
+<wongilla>
+    <scene name="tableScene">
+
+        <textbutton x="100" y="51" OnClickTo="index.xml">Back to Start Menu</textbutton>
+
+        <table name="table1" debug="all">
+            <tr>
+                <td>
+                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>
+                </td>
+
+            </tr>
+        </table>
+
+    </scene>
+</wongilla>

@@ -1,0 +1,31 @@
+<wongilla>
+    <scene name="touchPadScene" controller="TouchPadController">
+        <texture name="texture_knob" path="skin/touchpad/touchKnob.png"></texture>
+
+
+        <table name="table2" debug="all">
+            <tr expand="true">
+                <td>Welcome to my game world</td>
+                <td>testeste</td>
+            </tr>
+            <tr expand="true" fillX="true">
+                <td>
+                    <textbutton OnClickTo="index.xml">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="$Root.LoadStage()">Reload stage.xml</textbutton>
+                </td>
+            </tr>
+            <tr expand="true">
+                <td align="left" valign="bottom">
+                    <touchpad name="touchpad"></touchpad>
+                </td>
+                <td>
+                    <image name="image1" src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                </td>
+            </tr>
+        </table>
+
+
+    </scene>
+</wongilla>

@@ -1,0 +1,10 @@
+<wongilla>
+    <scene name="LoadMenu">
+
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu</textbutton>
+        <textbutton x="100" y="100">Record 1</textbutton>
+        <textbutton x="100" y="150">Record 2</textbutton>
+        <textbutton x="100" y="200">Record 3</textbutton>
+
+    </scene>
+</wongilla>

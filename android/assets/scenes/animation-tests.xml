@@ -1,0 +1,29 @@
+<wongilla>
+    <scene name="animationScene">
+        <texture name="superkoalioTexture" path="super-koalio/koalio.png"/>
+        <texture name="kennyTexture" path="images/spritesheet.png"/>
+
+        <tileset name="kennyTileSet" src="kennyTexture"  margin="2" cellspacing="2" col="30" row="30" tile-width="21" tile-height="21" />
+        <tileset name="superkoalio" src="superkoalioTexture"  margin="0" cellspacing="0" col="7" row="1" tile-width="18" tile-height="32" />
+
+        <action name="MoveToCenter">
+            <moveby x="300" duration="1"/>
+            <moveby y="100" duration="1"/>
+            <moveby x="-300" duration="1"/>
+        </action>
+
+        <animator x="150" y="150" tile-set="kennyTileSet"  play="walk" display-width="32" display-height="32">
+            <animation name="walk" indexes="[29,0],[28,0]" duration="0.5">
+            </animation>
+        </animator>
+
+
+        <textbutton x="100" y="50" OnClickTo="index.xml" action="MoveToCenter">Back to Start Menu</textbutton>
+
+        <animator x="150" y="250" tile-set="superkoalio"  duration="1.025" play="walk">
+            <animation name="walk" indexes="[1,0],[2,0],[3,0],[4,0]" duration="2"/>
+        </animator>
+
+
+    </scene>
+</wongilla>

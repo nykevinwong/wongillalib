@@ -1,0 +1,15 @@
+<wongilla>
+    <scene name="UITestScene">
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu</textbutton>
+
+        <checkbox x="100" y="100">Check me</checkbox>
+
+        <textfield x="100" y="150" password="*"></textfield>
+        <textfield x="100" y="200" watermark="Enter your name"></textfield>
+        <textfield x="100" y="250">default text</textfield>
+
+        <slider x="100" y="300"></slider>
+
+
+    </scene>
+</wongilla>

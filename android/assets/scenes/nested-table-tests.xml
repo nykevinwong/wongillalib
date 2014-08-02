@@ -1,0 +1,81 @@
+<wongilla>
+    <scene name="nestedTableScene">
+
+        <texture name="texture_knob" path="skin/touchpad/touchKnob.png"></texture>
+
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu 1</textbutton>
+
+        <table debug="all" expand="true">
+            <tr>
+                <td>
+                    <table debug="all">
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table debug="all">
+                        <tr>
+                            <td>
+                                <table debug="all">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                test
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </scene>
+</wongilla>

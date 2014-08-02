@@ -1,0 +1,21 @@
+<wongilla>
+    <scene name="mapScene" controller="TouchPadOnMapController">
+
+        <TiledMapRender name="gameMap" file="images/test.tmx" display-width="32" display-height="32" >
+        </TiledMapRender>
+
+
+        <table name="mapTable" debug="all">
+            <tr expand="true">
+                <td align="left" valign="bottom">
+                    <touchpad name="touchpad"></touchpad>
+                </td>
+            </tr>
+        </table>
+
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu </textbutton>
+
+
+
+    </scene>
+</wongilla>

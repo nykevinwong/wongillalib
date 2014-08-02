@@ -1,0 +1,7 @@
+<wongilla>
+    <scene name="treeScene">
+
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu</textbutton>
+        <tree x="100" y="100"></tree>
+    </scene>
+</wongilla>

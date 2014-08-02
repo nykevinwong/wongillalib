@@ -1,0 +1,272 @@
+<Wongilla startScene="startMenu">
+
+    <scene name="startMenu">
+
+        <table debug="table" fillX="true">
+            <tr>
+                <td>
+                    <textbutton OnClickTo="LoadStage()">Reload stage.xml</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="touchPadScene">TouchPad Test</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="LoadMenu">Load</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="DefaultController.SwitchColor()">Call
+                        SwitchColor() method
+                    </textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="UITestScene">UI Test</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="tableScene">Table</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="treeScene">Tree</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="mapScene">TMX Map</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="animationScene">Animation</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="nestedTableScene">Nested tables</textbutton>
+                </td>
+            </tr>
+        </table>
+
+
+    </scene>
+
+    <scene name="touchPadScene" controller="TouchPadController">
+        <texture name="texture_knob" path="skin/touchpad/touchKnob.png"></texture>
+
+
+        <table name="table2" debug="all">
+            <tr expand="true">
+                <td>Welcome to my game world</td>
+                <td>testeste</td>
+            </tr>
+            <tr expand="true" fillX="true">
+                <td>
+                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="$Root.LoadStage()">Reload stage.xml</textbutton>
+                </td>
+            </tr>
+            <tr expand="true">
+                <td align="left" valign="bottom">
+                    <touchpad name="touchpad"></touchpad>
+                </td>
+                <td>
+                    <image name="image1" src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                </td>
+            </tr>
+        </table>
+
+
+    </scene>
+
+
+    <scene name="tableScene">
+
+        <textbutton x="100" y="51" OnClickTo="startMenu">Back to Start Menu</textbutton>
+
+        <table name="table1" debug="all">
+            <tr>
+                <td>
+                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                </td>
+                <td>
+                    <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>
+                </td>
+
+            </tr>
+        </table>
+
+    </scene>
+
+    <scene name="UITestScene">
+        <textbutton x="100" y="50" OnClickTo="startMenu">Back to Start Menu</textbutton>
+
+        <checkbox x="100" y="100">Check me</checkbox>
+
+        <textfield x="100" y="150" password="*"></textfield>
+        <textfield x="100" y="200" watermark="Enter your name"></textfield>
+        <textfield x="100" y="250">default text</textfield>
+
+        <slider x="100" y="300"></slider>
+
+
+    </scene>
+
+    <scene name="LoadMenu">
+
+        <textbutton x="100" y="50" OnClickTo="startMenu">Back to Start Menu</textbutton>
+        <textbutton x="100" y="100">Record 1</textbutton>
+        <textbutton x="100" y="150">Record 2</textbutton>
+        <textbutton x="100" y="200">Record 3</textbutton>
+
+    </scene>
+
+    <scene name="treeScene">
+
+        <textbutton x="100" y="50" OnClickTo="startMenu">Back to Start Menu</textbutton>
+        <tree x="100" y="100"></tree>
+    </scene>
+
+    <scene name="mapScene">
+
+        <table name="mapTable" debug="all">
+            <tr expand="true">
+                <td align="left" valign="bottom">
+                    <touchpad name="touchpad"></touchpad>
+                </td>
+            </tr>
+        </table>
+
+        <textbutton x="100" y="50" OnClickTo="startMenu">Back to Start Menu 1</textbutton>
+
+        <FPSMonitor x="100" y="150"></FPSMonitor>
+
+        <TMXMapRender src="super-koalio/level1.tmx" width="30" height="20">
+        </TMXMapRender>
+
+
+    </scene>
+
+    <scene name="animationScene">
+        <texture name="superkoalio" path="super-koalio/koalio.png"/>
+        <texture name="walker" path="sprite-animation1.png"/>
+        <texture name="walker2" path="sprite-animation1.png"/>
+
+        <action name="MoveToCenter">
+            <moveby x="300" duration="1"/>
+            <moveby y="100" duration="1"/>
+            <moveby x="-300" duration="1"/>
+        </action>
+
+        <animator x="150" y="150" src="walker2" cols="6" rows="5" duration="0.025" play="walk">
+            <animation name="walk" indexes="1,2,3,4" duration="1"/>
+            <animation name="walk2" indexes="5,6,7,8" duration="2"/>
+        </animator>
+
+        <textbutton x="100" y="50" OnClickTo="startMenu" action="MoveToCenter">Back to Start Menu 1</textbutton>
+
+        <animator x="150" y="250" src="superkoalio" cols="7" rows="1" duration="1.025" action="jump"/>
+
+
+    </scene>
+
+    <scene name="nestedTableScene">
+
+        <texture name="texture_knob" path="skin/touchpad/touchKnob.png"></texture>
+
+        <textbutton x="100" y="50" OnClickTo="startMenu">Back to Start Menu 1</textbutton>
+
+        <table debug="all" expand="true">
+            <tr>
+                <td>
+                    <table debug="all">
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                            <td>
+                                <image src="texture_knob" OnClickTo="DefaultController.SwitchColor()"></image>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table debug="all">
+                        <tr>
+                            <td>
+                                <table debug="all">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                test
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+    </scene>
+
+</Wongilla>

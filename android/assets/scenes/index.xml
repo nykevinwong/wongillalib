@@ -1,0 +1,69 @@
+<wongilla>
+    <scene name="startMenu">
+
+        <table debug="table" fillX="true">
+            <tr>
+                <td>
+                    <textbutton OnClickTo="LoadStage()">Reload stage.xml</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="touchpad-tests.xml">TouchPad Test</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="load-menu.xml">Load</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="SwitchColor()">Call
+                        SwitchColor() method
+                    </textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="ui-tests.xml">UI Test</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="table-tests.xml">Table</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="tree-tests.xml">Tree</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="map-tests.xml">Tield Map Render</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="animation-tests.xml">Animation</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="nested-table-tests.xml">Nested Tables</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="platformer.xml">Platformer Game</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="exit()">Quit</textbutton>
+                </td>
+            </tr>
+        </table>
+    </scene>
+</wongilla>

@@ -1,5 +1,6 @@
 package com.gamecopter.wongillalib.controllers;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,6 +11,7 @@ import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.WongillaScript;
 import com.gamecopter.wongillalib.entities.AnimalEntity;
 import com.gamecopter.wongillalib.entities.EntityBase;
+import com.gamecopter.wongillalib.entities.plugins.StartState;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
@@ -33,8 +35,9 @@ public class PlatformerController implements SceneEventListener {
     public void resetEntity() {
 
         entity.setX(3);
-        entity.setY(3);
+        entity.setY(18);
         entity.enableGravity(false);
+        entity.setState(new StartState());
     }
 
     public void enableGravity() {
@@ -73,7 +76,13 @@ public class PlatformerController implements SceneEventListener {
             entity.setRequiredComponents(gameMap, player, tileSize);
             entity.setTouchpad(touchpad); // enable touchpad;
 
-            touchpad.setVisible(false);
+            if(Gdx.app.getType()== Application.ApplicationType.Android) {
+                touchpad.setVisible(true);
+            }
+
+            if(Gdx.app.getType()== Application.ApplicationType.Desktop) {
+             //   touchpad.setVisible(true);
+            }
         }
 
     }

@@ -15,6 +15,7 @@ public class UIScene extends WidgetGroup {
     private String Controller;
 
 
+
     private Actor findActor(Group g, String name) {
         Array<Actor> actors = g.getChildren();
 
@@ -46,4 +47,5 @@ public class UIScene extends WidgetGroup {
     public void setControllerName(String controller) {
         Controller = controller;
     }
+
 }

@@ -242,7 +242,7 @@ public class WongillaScript implements Disposable {
 
         UIScene scene = this.getCurrentScene();
 
-        if (scene != null) {
+        if (scene != null ) {
             SceneEventListener listener = (SceneEventListener) scopeService.getController(scene.getControllerName());
             if (listener != null)
                 listener.update(scene, this, scopeService, assetService);

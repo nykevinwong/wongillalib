@@ -1,6 +1,7 @@
 package com.gamecopter.wongillalib.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.gamecopter.wongillalib.entities.plugins.StartState;
 import com.gamecopter.wongillalib.entities.plugins.WalkState;
 
 /**
@@ -9,10 +10,9 @@ import com.gamecopter.wongillalib.entities.plugins.WalkState;
 public class AnimalEntity extends EntityBase {
 
     public AnimalEntity() {
-        this.setState(new WalkState());
-        this.setGraivty(8f);
+        this.setGraivty(6f);
         this.setVelocity(12f, 12f);
-        this.enableGravity(true);
+        this.setState(new StartState());
     }
 
 

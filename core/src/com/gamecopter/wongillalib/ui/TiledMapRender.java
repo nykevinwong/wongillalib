@@ -41,20 +41,23 @@ public class TiledMapRender extends Actor {
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
+                if ((x >= 0 && x <= Gdx.graphics.getWidth()) &&
+                        (y >= 0 && y <= Gdx.graphics.getHeight())) {
 
-                float tmpX = x;
-                float tmpY = Gdx.graphics.getHeight() - y;
-                tmpX += render.getDrawOffsetX();
-                tmpY += render.getDrawOffsetY();
+                    float tmpX = x;
+                    float tmpY = Gdx.graphics.getHeight() - y;
+                    tmpX += render.getDrawOffsetX();
+                    tmpY += render.getDrawOffsetY();
 
-                tmpX /= render.getDisplayTileWidth();
-                tmpY /= render.getDisplayTileHeight();
+                    tmpX /= render.getDisplayTileWidth();
+                    tmpY /= render.getDisplayTileHeight();
 
-                int index = render.getLayerMapIndex(0, (int) tmpX, (int) tmpY);
+                    int index = render.getLayerMapIndex(0, (int) tmpX, (int) tmpY);
 
-                String info = "Clicked at (" + (int) tmpX + "," + (int) tmpY + ") = map index: [" + index + "] : colliable:" + render.isCollidableTile(index);
+                    String info = "Clicked at (" + (int) tmpX + "," + (int) tmpY + ") = map index: [" + index + "] : colliable:" + render.isCollidableTile(index);
 
-                l.setText(info);
+                    l.setText(info);
+                }
 
             }
 

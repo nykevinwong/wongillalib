@@ -49,13 +49,9 @@ public class WalkState  extends EntityState {
         if (touchpad != null) // if a touchpad is applied
         {
             float knobPercentX = touchpad.getKnobPercentX();
-            float knobPercentY = -touchpad.getKnobPercentY();
 
             if (knobPercentX != 0)
                 vx = knobPercentX * entity.getVelocityX();
-
-            if (knobPercentY != 0)
-                vy = knobPercentY * entity.getVelocityY();
         }
 
         // if a keyboard is applied
@@ -85,21 +81,22 @@ public class WalkState  extends EntityState {
         if (entity.isMapCollisionDetectionEnabled()) {
             // adjust futureX and futureY based on map collision result.
 
-            if (vx != 0 && entity.isCollidedWithMap(0, futureX, entity.getY()) ) {
-                // if it collides horizontally, resolve the future position.
-                if (vx > 0) {
-                    int tilePosition = (int) (futureX + entity.getUnitWidth());
 
-                    futureX = tilePosition - entity.getUnitWidth();
+                if (vx != 0 && entity.isCollidedWithMap(0, futureX, entity.getY())) {
+                    // if it collides horizontally, resolve the future position.
+                    if (vx > 0) {
+                        int tilePosition = (int) (futureX + entity.getUnitWidth());
+
+                        futureX = tilePosition - entity.getUnitWidth();
 
 
-                } else {
-                    futureX = (int) (futureX + 1);
+                    } else {
+                        futureX = (int) (futureX + 1);
+                    }
+
+                    vx = 0;
+
                 }
-
-                vx = 0;
-
-            }
 
             if (vy != 0 && entity.isCollidedWithMap(0, futureX, futureY)) {
                 // if it collides vertically, resolve the future position.

@@ -34,6 +34,7 @@ public class PlatformerController implements SceneEventListener {
 
         entity.setX(3);
         entity.setY(3);
+        entity.enableGravity(false);
     }
 
     public void enableGravity() {
@@ -72,6 +73,7 @@ public class PlatformerController implements SceneEventListener {
             entity.setRequiredComponents(gameMap, player, tileSize);
             entity.setTouchpad(touchpad); // enable touchpad;
 
+            touchpad.setVisible(false);
         }
 
     }
@@ -84,10 +86,9 @@ public class PlatformerController implements SceneEventListener {
     @Override
     public void update(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
 
-        entity.update();
-        entity.draw();
+            entity.update();
+            entity.draw();
 
-        if (l != null && gameMap != null) {
             Vector2 currentPos = new Vector2(player.getX(), Gdx.graphics.getHeight() - player.getY());
 
             int x = (int) entity.getX();
@@ -102,7 +103,7 @@ public class PlatformerController implements SceneEventListener {
             scopeService.updateScopeVariable("IsGravity", entity.isGravityEnabled());
 
             l.setText(message);
-        }
+
     }
 
 

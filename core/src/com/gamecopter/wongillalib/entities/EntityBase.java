@@ -1,6 +1,7 @@
 package com.gamecopter.wongillalib.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.gamecopter.wongillalib.ui.Animator;
@@ -189,8 +190,9 @@ public abstract class EntityBase {
     }
 
     public boolean isCollidedWithMap(float layerIndex, float x, float y) {
-        if (gameMap != null)
+        if (gameMap != null) {
             return gameMap.isCollided(0, x, y, this.getUnitWidth(), this.getUnitHeight());
+        }
 
         return false;
     }
@@ -207,7 +209,7 @@ public abstract class EntityBase {
     public void draw() {
         Vector2 stagedCoord = Vector2.Zero;
 
-        if (player != null) {
+        if (player != null &&  gameMap != null  ) {
             // convert to lbgdx stage Coordination for drawing position
             int DisplayX = (int) (this.getX() * tileSize);
             int DisplayY = (int) ((this.getY() + 1) * tileSize);

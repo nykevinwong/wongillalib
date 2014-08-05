@@ -2,6 +2,7 @@ package com.gamecopter.wongillalib.entities.plugins;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.gamecopter.wongillalib.entities.EntityBase;
 import com.gamecopter.wongillalib.entities.EntityState;
 import com.gamecopter.wongillalib.utils.Sound;
@@ -32,6 +33,17 @@ public class JumpState extends EntityState {
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
             vx = entity.getVelocityX();
+
+        Touchpad touchpad = entity.getTouchpad();
+        if (touchpad != null) // if a touchpad is applied
+        {
+            float knobPercentX = touchpad.getKnobPercentX();
+
+            if (knobPercentX != 0)
+                vx = knobPercentX * entity.getVelocityX();
+
+
+        }
 
         if(entity.isGravityEnabled())
             vy+= entity.getGraivty();

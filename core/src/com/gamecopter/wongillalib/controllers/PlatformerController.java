@@ -35,7 +35,7 @@ public class PlatformerController implements SceneEventListener {
     public void resetEntity() {
 
         entity.setX(3);
-        entity.setY(18);
+        entity.setY(3);
         entity.enableGravity(false);
         entity.setState(new StartState());
     }
@@ -81,7 +81,7 @@ public class PlatformerController implements SceneEventListener {
             }
 
             if(Gdx.app.getType()== Application.ApplicationType.Desktop) {
-             //   touchpad.setVisible(true);
+              touchpad.setVisible(false);
             }
         }
 

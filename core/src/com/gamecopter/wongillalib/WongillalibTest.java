@@ -56,16 +56,16 @@ public class WongillalibTest extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         float delta = Gdx.graphics.getDeltaTime();
-        accum += delta;
+//        accum += delta;
 
-        float Tick = 1.0f / 60.0f;
+//        float Tick = 1.0f / 60.0f;
 
-        while (accum > Tick) {
+  //      while (accum > Tick) {
 
             wongillaScript.update();
 
-            accum -= Tick;
-        }
+    //        accum -= Tick;
+      //  }
 
 
         wongillaScript.draw();

@@ -32,6 +32,8 @@ public abstract class EntityBase {
     private boolean dampingXEnabled;
     private boolean dampingYEnabled;
 
+    private boolean YScrollingEnable;
+
 
     private boolean enableMapCollisionDetection = true;
     private TiledMapRender gameMap;
@@ -212,10 +214,7 @@ public abstract class EntityBase {
         if (player != null &&  gameMap != null  ) {
             // convert to lbgdx stage Coordination for drawing position
             int DisplayX = (int) (this.getX() * tileSize);
-            int DisplayY = (int) ((this.getY() + 1) * tileSize);
-
             float OffsetX = DisplayX - (int) (Gdx.app.getGraphics().getWidth() / 2);
-            float OffsetY = DisplayY - (int) (Gdx.app.getGraphics().getHeight() / 2);
 
 
             if (OffsetX > 0) {
@@ -232,18 +231,25 @@ public abstract class EntityBase {
                 OffsetX = 0;
             }
 
-            if (OffsetY > 0) {
-                float lastEdge = gameMap.getLayerHeight(0) * tileSize - Gdx.graphics.getHeight();
+            int DisplayY = (int) ((this.getY() + 1) * tileSize);
+            float OffsetY = 0;
 
-                if (OffsetY > lastEdge) {
-                    OffsetY = lastEdge;
-                    DisplayY -= OffsetY;
+            if(this.isYScrollingEnable()) {
+                OffsetY = DisplayY - (int) (Gdx.app.getGraphics().getHeight() / 2);
+                if (OffsetY > 0) {
+                    float lastEdge = gameMap.getLayerHeight(0) * tileSize - Gdx.graphics.getHeight();
+
+                    if (OffsetY > lastEdge) {
+                        OffsetY = lastEdge;
+                        DisplayY -= OffsetY;
+                    } else {
+                        DisplayY = (int) (Gdx.app.getGraphics().getHeight() / 2);
+                    }
                 } else {
-                    DisplayY = (int) (Gdx.app.getGraphics().getHeight() / 2);
+                    OffsetY = 0;
                 }
-            } else {
-                OffsetY = 0;
             }
+
 
             gameMap.setDrawOffset(OffsetX, OffsetY);
 
@@ -260,5 +266,14 @@ public abstract class EntityBase {
 
     public void setGameMap(TiledMapRender gameMap) {
         this.gameMap = gameMap;
+    }
+
+
+    public boolean isYScrollingEnable() {
+        return YScrollingEnable;
+    }
+
+    public void enalbeYScrolling(boolean YScrollingEnable) {
+        this.YScrollingEnable = YScrollingEnable;
     }
 }

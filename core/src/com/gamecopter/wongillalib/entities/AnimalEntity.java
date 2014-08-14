@@ -10,8 +10,8 @@ import com.gamecopter.wongillalib.entities.plugins.WalkState;
 public class AnimalEntity extends EntityBase {
 
     public AnimalEntity() {
-        this.setGraivty(6f);
-        this.setVelocity(12f, 12f);
+        this.setGraivty(7f);
+        this.setVelocity(6f, 6f);
         this.setState(new StartState());
     }
 

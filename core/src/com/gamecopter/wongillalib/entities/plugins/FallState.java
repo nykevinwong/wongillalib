@@ -48,7 +48,7 @@ public class FallState extends EntityState {
 
         if(entity.isGravityEnabled()) {
             vy += gravity;
-            gravity = entity.getGraivty() * 1.5f;
+            gravity = entity.getGraivty() * 1.6f;
         }
 
         /*

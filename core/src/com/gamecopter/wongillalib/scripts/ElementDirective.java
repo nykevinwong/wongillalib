@@ -3,12 +3,15 @@ package com.gamecopter.wongillalib.scripts;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.XmlReader;
 
+import java.util.ArrayList;
+
 /**
  * Created by Kevin Wong on 8/8/2014.
  */
 public abstract class ElementDirective implements IDirective {
     String name;
     int priority;
+    private ArrayList<AttributeDirective> attributes;
 
     @Override
     public String getName() {
@@ -53,4 +56,11 @@ public abstract class ElementDirective implements IDirective {
 
     }
 
+    public void add(AttributeDirective d)
+    {
+        if (attributes == null)
+            attributes = new ArrayList<AttributeDirective>();
+
+        attributes.add(d);
+    }
 }

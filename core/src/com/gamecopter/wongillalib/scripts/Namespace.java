@@ -24,19 +24,20 @@ public class Namespace {
 
     public Namespace namespace(String name)
     {
-        String[] names = name.split(".");
+        String[] names = name.split("\\.");
 
-        Namespace ns = this;
+        Namespace parent = this;
 
-        for(String n:names) {
-            ns = createNamespace(name, ns);
-        }
+            for (String tmpName : names) {
+                parent = createNamespace(tmpName, parent);
+            }
 
-        return ns;
+        return parent;
     }
 
     public static Namespace createRootNamespace(String singleName)
     {
+
         return createNamespace(singleName, null);
     }
 
@@ -44,6 +45,17 @@ public class Namespace {
     {
         if(singleName.contains("."))
             return null;
+
+        if(parentNamespace!=null) {
+            ArrayList<Namespace> namespaces = parentNamespace.getChild();
+
+            if(namespaces!=null) {
+                for (Namespace ns : namespaces) {
+                    if (ns.getName().equalsIgnoreCase(singleName))
+                        return ns;
+                }
+            }
+        }
 
         Namespace p = new Namespace(singleName);
 
@@ -100,10 +112,15 @@ public class Namespace {
 
         do {
             if(fullName.length() > 0 )
-                fullName += ".";
+                fullName = "." + fullName;
 
-            fullName += ns.getName();
+            String name = ns.getName();
+
+            if(ns.getParent()!=null && name !=null )
+               fullName = name  + fullName;
+
             ns = ns.getParent();
+
         }while(ns !=null);
 
         return fullName;

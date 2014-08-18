@@ -19,7 +19,7 @@ import com.gamecopter.wongillalib.ui.*;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.utils.DirectiveEventListener;
-import com.gamecopter.wongillalib.utils.ElementDirective;
+import com.gamecopter.wongillalib.scripts.ElementDirective;
 import com.gamecopter.wongillalib.utils.TextureUtils;
 
 import java.util.ArrayList;
@@ -71,11 +71,8 @@ public class DirectiveFactory {
     }
 
     public ElementDirective CreateControllerLayerDirective() {
-        ElementDirective d = new ElementDirective("ControllerLayer");
+        ElementDirective d = new ElementDirective("ControllerLayer"){
 
-        d.setApplyCommonAttribute(true);
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -100,17 +97,16 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
+
+        d.setApplyCommonAttribute(false);
 
         return d;
     }
 
     public ElementDirective CreateTiledMapRenderDirective() {
-        ElementDirective d = new ElementDirective("TiledMapRender");
+        ElementDirective d = new ElementDirective("TiledMapRender"){
 
-        d.setApplyCommonAttribute(true);
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -126,17 +122,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateTextureDirective() {
-        ElementDirective d = new ElementDirective("texture");
+        ElementDirective d = new ElementDirective("texture"){
 
-        d.setApplyCommonAttribute(false);
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -154,17 +147,16 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
+
+        d.setApplyCommonAttribute(false);
 
         return d;
     }
 
     public ElementDirective CreateTileSetDirective() {
-        ElementDirective d = new ElementDirective("tileset");
+        ElementDirective d = new ElementDirective("tileset") {
 
-        d.setApplyCommonAttribute(false);
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -196,17 +188,16 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
+
+        d.setApplyCommonAttribute(false);
 
         return d;
     }
 
     public ElementDirective CreatePixmapDirective() {
-        ElementDirective d = new ElementDirective("pixmap");
-
-        d.setApplyCommonAttribute(false);
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("pixmap")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -224,16 +215,16 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
+
+        d.setApplyCommonAttribute(false);
 
         return d;
     }
 
     public ElementDirective CreateImageDirective() {
-        ElementDirective d = new ElementDirective("image");
+        ElementDirective d = new ElementDirective("image"){
 
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -246,16 +237,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateTouchPadDirective() {
-        ElementDirective d = new ElementDirective("touchpad");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("touchpad")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -303,16 +292,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateTextboxDirective() {
-        ElementDirective d = new ElementDirective("textbutton");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("textbutton")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -322,16 +309,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateCheckboxDirective() {
-        ElementDirective d = new ElementDirective("checkbox");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("checkbox")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -341,16 +326,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateSliderDirective() {
-        ElementDirective d = new ElementDirective("slider");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("slider")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -364,16 +347,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateLabelDirective() {
-        ElementDirective d = new ElementDirective("label");
+        ElementDirective d = new ElementDirective("label"){
 
-
-        d.addEventListener(new DirectiveEventListener() {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -383,16 +364,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateTextFieldDirective() {
-        ElementDirective d = new ElementDirective("textfield");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("textfield")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -426,16 +405,14 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
 
     public ElementDirective CreateTableDirective() {
-        ElementDirective d = new ElementDirective("table");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("table")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -598,7 +575,8 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
+
 
         return d;
     }
@@ -626,10 +604,8 @@ public class DirectiveFactory {
     }
 
     public ElementDirective CreateAnimatorDirective() {
-        ElementDirective d = new ElementDirective("animator");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("animator")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -674,7 +650,7 @@ public class DirectiveFactory {
             }
 
 
-        });
+        };
 
         return d;
     }
@@ -805,12 +781,8 @@ public class DirectiveFactory {
     }
 
     public ElementDirective CreateActionDirective() {
-        ElementDirective d = new ElementDirective("action");
-
-        d.setApplyCommonAttribute(false);
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        ElementDirective d = new ElementDirective("action")
+        {
             @Override
             // createInstance creates an object or actor based on XML element.
             public Actor createInstance(XmlReader.Element iElement) {
@@ -827,8 +799,9 @@ public class DirectiveFactory {
                 return null;
             }
 
+        };
 
-        });
+        d.setApplyCommonAttribute(false);
 
         return d;
     }

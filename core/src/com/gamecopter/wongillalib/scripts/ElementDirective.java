@@ -9,9 +9,15 @@ import java.util.ArrayList;
  * Created by Kevin Wong on 8/8/2014.
  */
 public abstract class ElementDirective implements IDirective {
-    String name;
-    int priority;
+    private String name;
+    private int priority;
+    private boolean applyCommonAttribute = true;
     private ArrayList<AttributeDirective> attributes;
+
+    public ElementDirective(String name)
+    {
+        this.name = name;
+    }
 
     @Override
     public String getName() {
@@ -62,5 +68,13 @@ public abstract class ElementDirective implements IDirective {
             attributes = new ArrayList<AttributeDirective>();
 
         attributes.add(d);
+    }
+
+    public boolean isApplyCommonAttribute() {
+        return applyCommonAttribute;
+    }
+
+    public void setApplyCommonAttribute(boolean applyCommonAttribute) {
+        this.applyCommonAttribute = applyCommonAttribute;
     }
 }

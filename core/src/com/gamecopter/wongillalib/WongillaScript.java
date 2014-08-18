@@ -17,8 +17,8 @@ import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.scripts.AttributeDirective;
-import com.gamecopter.wongillalib.utils.ElementDirective;
-import com.gamecopter.wongillalib.utils.Namespace;
+import com.gamecopter.wongillalib.scripts.ElementDirective;
+import com.gamecopter.wongillalib.scripts.Namespace;
 
 
 import java.util.ArrayList;
@@ -30,9 +30,7 @@ public class WongillaScript implements Disposable {
 
     XmlReader.Element xml_element;
 
-    ArrayList<Namespace> Namespaces = new ArrayList<Namespace>();
-
-    com.gamecopter.wongillalib.scripts.Namespace rootNamespace = com.gamecopter.wongillalib.scripts.Namespace.createRootNamespace("ROOT");
+   Namespace rootNamespace = Namespace.createRootNamespace("ROOT");
 
     AssetService assetService = new AssetService();
     private ScopeService scopeService;
@@ -53,15 +51,8 @@ public class WongillaScript implements Disposable {
         DirectiveElements.addAll(directiveFactory.CreateList());
         CommonAttributes.addAll(attributeFactory.CreateList());
 
-        Namespace ns = new Namespace("wongilla.libgdx.scene2d");
-
-        ns.addElementDirectives(DirectiveElements);
-       // ns.addCommonAttributes(CommonAttributes);
-
-        Namespaces.add(ns);
-
-
-        rootNamespace.namespace("wongila.libdx.scene2d").addAttributes(CommonAttributes);
+        rootNamespace.namespace("wongila.libgdx.scene2d").addElements(DirectiveElements);
+        rootNamespace.namespace("wongila.libgdx.scene2d").addAttributes(CommonAttributes);
     }
 
     public void addController(String name, Object controller) {
@@ -76,16 +67,16 @@ public class WongillaScript implements Disposable {
         String name = e.getName();
         Actor a = null;
 
-        for (int i = 0; i < Namespaces.size(); i++) {
-            Namespace ns = Namespaces.get(i);
+            Namespace importedNamespace =  rootNamespace.namespace("wongila.libgdx.scene2d");
 
-            ArrayList<ElementDirective> DirectiveElements = ns.getDirectiveElements();
-            ArrayList<AttributeDirective> CommonAttributes = rootNamespace.namespace("wongila.libdx.scene2d").getAttributes();
+
+            ArrayList<ElementDirective> DirectiveElements = importedNamespace.getElements();
+            ArrayList<AttributeDirective> CommonAttributes = importedNamespace.getAttributes();
 
             for (ElementDirective d : DirectiveElements) {
 
-                if (name.equalsIgnoreCase(d.getDirectiveName())) {
-                    a = d.CompositeDirective(null, e);
+                if (name.equalsIgnoreCase(d.getName())) {
+                    a = d.processDirective(null, e);
 
                     if (a != null) {
 
@@ -101,7 +92,7 @@ public class WongillaScript implements Disposable {
                 }
             }
 
-        }
+
 
         return a;
     }

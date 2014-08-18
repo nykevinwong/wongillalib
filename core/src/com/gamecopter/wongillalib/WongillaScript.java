@@ -16,7 +16,7 @@ import com.gamecopter.wongillalib.factories.DirectiveFactory;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
-import com.gamecopter.wongillalib.utils.AttributeDirective;
+import com.gamecopter.wongillalib.scripts.AttributeDirective;
 import com.gamecopter.wongillalib.utils.ElementDirective;
 import com.gamecopter.wongillalib.utils.Namespace;
 
@@ -32,6 +32,7 @@ public class WongillaScript implements Disposable {
 
     ArrayList<Namespace> Namespaces = new ArrayList<Namespace>();
 
+    com.gamecopter.wongillalib.scripts.Namespace rootNamespace = com.gamecopter.wongillalib.scripts.Namespace.createRootNamespace("ROOT");
 
     AssetService assetService = new AssetService();
     private ScopeService scopeService;
@@ -55,9 +56,12 @@ public class WongillaScript implements Disposable {
         Namespace ns = new Namespace("wongilla.libgdx.scene2d");
 
         ns.addElementDirectives(DirectiveElements);
-        ns.addCommonAttributes(CommonAttributes);
+       // ns.addCommonAttributes(CommonAttributes);
 
         Namespaces.add(ns);
+
+
+        rootNamespace.namespace("wongila.libdx.scene2d").addAttributes(CommonAttributes);
     }
 
     public void addController(String name, Object controller) {
@@ -76,7 +80,7 @@ public class WongillaScript implements Disposable {
             Namespace ns = Namespaces.get(i);
 
             ArrayList<ElementDirective> DirectiveElements = ns.getDirectiveElements();
-            ArrayList<AttributeDirective> CommonAttributes = ns.getCommonAttributes();
+            ArrayList<AttributeDirective> CommonAttributes = rootNamespace.namespace("wongila.libdx.scene2d").getAttributes();
 
             for (ElementDirective d : DirectiveElements) {
 
@@ -87,7 +91,7 @@ public class WongillaScript implements Disposable {
 
                         if (d.isApplyCommonAttribute()) {
                             for (AttributeDirective ad : CommonAttributes) {
-                                a = ad.CompositeDirective(a, e);
+                                a = ad.processDirective(a, e);
                             }
                         }
 

@@ -29,12 +29,13 @@ public class NamespaceTest {
     }
 
     @Test
-    public void DifferentFullNameTest() {
+    public void DifferentFullNameDifferentReferenceTest() {
         Namespace root = Namespace.createRootNamespace("root");
         Namespace a = root.namespace("com.gamecopter.wongillalib");
         Namespace b = root.namespace("com").namespace("gamecopter").namespace("scripts");
 
         assertNotEquals(a.getFullName(), b.getFullName());
+        assertTrue(a != b);
 
     }
 

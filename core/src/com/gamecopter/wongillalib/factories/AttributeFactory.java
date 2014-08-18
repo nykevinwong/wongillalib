@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.Method;
 import com.gamecopter.wongillalib.services.ScopeService;
-import com.gamecopter.wongillalib.utils.AttributeDirective;
+import com.gamecopter.wongillalib.scripts.AttributeDirective;
 import com.gamecopter.wongillalib.utils.DirectiveEventListener;
 
 import java.util.ArrayList;
@@ -28,9 +28,8 @@ public class AttributeFactory {
 
 
     public AttributeDirective CreateValueAttribute() {
-        AttributeDirective d = new AttributeDirective("value");
 
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("value"){
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 String key = iElement.get("value", null);
@@ -49,7 +48,6 @@ public class AttributeFactory {
                             String text = (String) scopeService.getScopeVariable(key);
                             ((TextField) a).setText(text);
                         }
-
                     }
 
 
@@ -90,15 +88,13 @@ public class AttributeFactory {
                 }
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateYAttribute() {
-        AttributeDirective d = new AttributeDirective("y");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("y") {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 float y = iElement.getFloat("y", 0);
@@ -114,31 +110,27 @@ public class AttributeFactory {
                 a.setY(y);
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateXAttribute() {
-        AttributeDirective d = new AttributeDirective("x");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("x") {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 float x = iElement.getFloat("x", 0);
                 a.setX(x);
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateWidthAttribute() {
-        AttributeDirective d = new AttributeDirective("width");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("width")
+        {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 float width = iElement.getFloat("width", 0);
@@ -147,16 +139,14 @@ public class AttributeFactory {
                     a.setWidth(width);
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateHeightAttribute() {
-        AttributeDirective d = new AttributeDirective("height");
-
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("height")
+        {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 float width = iElement.getFloat("height", 0);
@@ -165,15 +155,14 @@ public class AttributeFactory {
                     a.setWidth(width);
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateNameAttribute() {
-        AttributeDirective d = new AttributeDirective("name");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("name")
+        {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 String name = iElement.get("name", null);
@@ -182,15 +171,13 @@ public class AttributeFactory {
                     a.setName(name);
             }
 
-        });
+        };
 
         return d;
     }
 
     public AttributeDirective CreateShowAttribute() {
-        AttributeDirective d = new AttributeDirective("show");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("show"){
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 boolean show = iElement.getBoolean("show", true);
@@ -198,16 +185,14 @@ public class AttributeFactory {
                 a.setVisible(show);
             }
 
-        });
+        };
 
         return d;
-
     }
 
     public AttributeDirective CreateOnClickToAttribute() {
-        AttributeDirective d = new AttributeDirective("OnClickTo");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("OnClickTo")
+        {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 String OnClickTo = iElement.getAttribute("OnClickTo", null);
@@ -273,7 +258,7 @@ public class AttributeFactory {
 
             }
 
-        });
+        };
 
         return d;
 
@@ -281,9 +266,8 @@ public class AttributeFactory {
 
 
     public AttributeDirective CreateActionAttribute() {
-        AttributeDirective d = new AttributeDirective("action");
-
-        d.addEventListener(new DirectiveEventListener() {
+        AttributeDirective d = new AttributeDirective("action")
+        {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
                 String name = iElement.get("action", null);
@@ -297,7 +281,7 @@ public class AttributeFactory {
 
             }
 
-        });
+        };
 
         return d;
     }

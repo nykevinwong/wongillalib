@@ -2,6 +2,7 @@ package com.gamecopter.wongillalib.scripts;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kevin Wong on 8/6/2014.
@@ -35,6 +36,11 @@ public class Namespace {
         return parent;
     }
 
+    /**
+     *
+     * @param singleName the name of Root namespace.
+     * @return the root Namespace without a parent
+     */
     public static Namespace createRootNamespace(String singleName)
     {
 
@@ -94,6 +100,9 @@ public class Namespace {
 
     public void addChild(Namespace child) {
 
+        if(child==null) // no child is available
+            return;
+
         if(childs==null)
             childs = new ArrayList<Namespace>();
 
@@ -111,12 +120,13 @@ public class Namespace {
         String fullName = "";
 
         do {
-            if(fullName.length() > 0 )
-                fullName = "." + fullName;
 
             String name = ns.getName();
 
-            if(ns.getParent()!=null && name !=null )
+            if(fullName.length() > 0 )
+                fullName = "." + fullName;
+
+            if(name !=null )
                fullName = name  + fullName;
 
             ns = ns.getParent();
@@ -126,7 +136,7 @@ public class Namespace {
         return fullName;
     }
 
-    public void add(ElementDirective d)
+    public void addElement(ElementDirective d)
     {
             if (elements == null)
                 elements = new ArrayList<ElementDirective>();
@@ -134,12 +144,35 @@ public class Namespace {
             elements.add(d);
     }
 
-    public void add(AttributeDirective d)
+    public void addAttribute(AttributeDirective d)
+    {
+        if (attributes == null)
+            attributes = new ArrayList<AttributeDirective>();
+
+        attributes.add(d);
+    }
+
+    public void addElements(List<ElementDirective> ds)
+    {
+        if (elements == null)
+            elements = new ArrayList<ElementDirective>();
+
+        elements.addAll(ds);
+    }
+
+    public void addAttributes(List<AttributeDirective> ds)
     {
             if (attributes == null)
                 attributes = new ArrayList<AttributeDirective>();
 
-            attributes.add(d);
+            attributes.addAll(ds);
     }
 
+    public ArrayList<ElementDirective> getElements() {
+        return elements;
+    }
+
+    public ArrayList<AttributeDirective> getAttributes() {
+        return attributes;
+    }
 }

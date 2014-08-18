@@ -6,9 +6,14 @@ import com.badlogic.gdx.utils.XmlReader;
 /**
  * Created by Kevin Wong on 8/8/2014.
  */
-public abstract class AttributeDirective implements IDirective {
+public class AttributeDirective implements IDirective {
     String name;
     int priority;
+
+    public AttributeDirective(String name)
+    {
+        this.name = name;
+    }
 
     @Override
     public String getName() {

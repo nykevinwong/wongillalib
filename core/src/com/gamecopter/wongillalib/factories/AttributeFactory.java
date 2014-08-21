@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.Method;
 import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.scripts.AttributeDirective;
-import com.gamecopter.wongillalib.utils.DirectiveEventListener;
+
 
 import java.util.ArrayList;
 

@@ -11,7 +11,7 @@ import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.WongillaScript;
 import com.gamecopter.wongillalib.entities.AnimalEntity;
 import com.gamecopter.wongillalib.entities.EntityBase;
-import com.gamecopter.wongillalib.entities.plugins.StartState;
+import com.gamecopter.wongillalib.entities.states.StartState;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;

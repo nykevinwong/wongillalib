@@ -1,10 +1,9 @@
-package com.gamecopter.wongillalib.entities.plugins;
+package com.gamecopter.wongillalib.entities.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.gamecopter.wongillalib.entities.EntityBase;
-import com.gamecopter.wongillalib.entities.EntityState;
 
 /**
  * Created by Kevin Wong on 7/24/2014.

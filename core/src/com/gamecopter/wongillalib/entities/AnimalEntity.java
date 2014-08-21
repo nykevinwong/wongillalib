@@ -1,8 +1,8 @@
 package com.gamecopter.wongillalib.entities;
 
 import com.badlogic.gdx.Gdx;
-import com.gamecopter.wongillalib.entities.plugins.StartState;
-import com.gamecopter.wongillalib.entities.plugins.WalkState;
+import com.gamecopter.wongillalib.entities.states.EntityState;
+import com.gamecopter.wongillalib.entities.states.StartState;
 
 /**
  * Created by Kevin Wong on 7/22/2014.

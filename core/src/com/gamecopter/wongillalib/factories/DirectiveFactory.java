@@ -18,7 +18,6 @@ import com.gamecopter.wongillalib.resources.Resources;
 import com.gamecopter.wongillalib.ui.*;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
-import com.gamecopter.wongillalib.utils.DirectiveEventListener;
 import com.gamecopter.wongillalib.scripts.ElementDirective;
 import com.gamecopter.wongillalib.utils.TextureUtils;
 

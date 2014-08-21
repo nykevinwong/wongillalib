@@ -1,4 +1,6 @@
-package com.gamecopter.wongillalib.entities;
+package com.gamecopter.wongillalib.entities.states;
+
+import com.gamecopter.wongillalib.entities.EntityBase;
 
 /**
  * Created by Kevin Wong on 7/24/2014.

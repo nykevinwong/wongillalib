@@ -1,13 +1,11 @@
 package com.gamecopter.wongillalib.entities;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.gamecopter.wongillalib.entities.states.EntityState;
 import com.gamecopter.wongillalib.ui.Animator;
 import com.gamecopter.wongillalib.ui.TiledMapRender;
-
-import java.util.ArrayList;
 
 /**
  * Created by Kevin Wong on 7/20/2014.

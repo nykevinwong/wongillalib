@@ -10,9 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.XmlReader;
-import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.factories.AttributeFactory;
-import com.gamecopter.wongillalib.factories.DirectiveFactory;
+import com.gamecopter.wongillalib.factories.ElementFactory;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
@@ -42,18 +41,19 @@ public class WongillaScript implements Disposable {
         stage = s;
         scopeService = new ScopeService(this, rootController);
 
-        DirectiveFactory directiveFactory = new DirectiveFactory(scopeService, assetService);
+        ElementFactory elementFactory = new ElementFactory(scopeService, assetService);
         AttributeFactory attributeFactory = new AttributeFactory(scopeService);
 
         ArrayList<ElementDirective> DirectiveElements = new ArrayList<ElementDirective>();
         ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
 
-        DirectiveElements.addAll(directiveFactory.CreateList());
-        CommonAttributes.addAll(attributeFactory.CreateList());
+        DirectiveElements.addAll(elementFactory.createDirectives());
+        CommonAttributes.addAll(attributeFactory.createDirectives());
 
         rootNamespace.namespace("wongila.libgdx.scene2d").addElements(DirectiveElements);
         rootNamespace.namespace("wongila.libgdx.scene2d").addAttributes(CommonAttributes);
     }
+
 
     public void addController(String name, Object controller) {
         scopeService.addController(name, controller);

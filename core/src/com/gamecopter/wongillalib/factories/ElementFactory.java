@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.XmlReader;
 
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.resources.Resources;
+import com.gamecopter.wongillalib.scripts.DirectiveFactory;
+import com.gamecopter.wongillalib.scripts.IDirective;
 import com.gamecopter.wongillalib.ui.*;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
@@ -26,18 +28,14 @@ import java.util.ArrayList;
 /**
  * Created by Kevin Wong on 6/24/2014.
  */
-public class DirectiveFactory {
+public class ElementFactory extends DirectiveFactory<ElementDirective> {
 
-    protected AssetService assetService;
-    protected ScopeService scopeService;
-
-
-    public DirectiveFactory(ScopeService scopeService, AssetService assetService) {
-        this.assetService = assetService;
-        this.scopeService = scopeService;
+    public ElementFactory(ScopeService scopeService, AssetService assetService) {
+        super(scopeService, assetService);
     }
 
-    public ArrayList<ElementDirective> CreateList() {
+    @Override
+    public ArrayList<ElementDirective> createDirectives() {
         ArrayList<ElementDirective> CommonElements = new ArrayList<ElementDirective>();
 
 

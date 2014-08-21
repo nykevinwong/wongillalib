@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.Method;
+import com.gamecopter.wongillalib.scripts.DirectiveFactory;
 import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.scripts.AttributeDirective;
 
@@ -18,12 +19,10 @@ import java.util.ArrayList;
 /**
  * Created by Kevin Wong on 6/24/2014.
  */
-public class AttributeFactory {
-
-    ScopeService scopeService;
+public class AttributeFactory extends DirectiveFactory<AttributeDirective> {
 
     public AttributeFactory(ScopeService scopeService) {
-        this.scopeService = scopeService;
+        super(scopeService, null);
     }
 
 
@@ -286,17 +285,20 @@ public class AttributeFactory {
         return d;
     }
 
-    public ArrayList<AttributeDirective> CreateList() {
-        ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
 
-        CommonAttributes.add(CreateNameAttribute());
-        CommonAttributes.add(CreateXAttribute());
-        CommonAttributes.add(CreateYAttribute());
-        CommonAttributes.add(CreateShowAttribute());
-        CommonAttributes.add(CreateOnClickToAttribute());
-        CommonAttributes.add(CreateActionAttribute());
-        CommonAttributes.add(CreateValueAttribute());
+    @Override
+    public ArrayList<AttributeDirective> createDirectives() {
+            ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
 
-        return CommonAttributes;
+            CommonAttributes.add(CreateNameAttribute());
+            CommonAttributes.add(CreateXAttribute());
+            CommonAttributes.add(CreateYAttribute());
+            CommonAttributes.add(CreateShowAttribute());
+            CommonAttributes.add(CreateOnClickToAttribute());
+            CommonAttributes.add(CreateActionAttribute());
+            CommonAttributes.add(CreateValueAttribute());
+
+            return CommonAttributes;
     }
+
 }

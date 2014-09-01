@@ -15,6 +15,8 @@ import com.gamecopter.wongillalib.WongillaScript;
  * Created by Kevin Wong on 7/7/2014.
  */
 public class TouchPadOnMapController implements SceneEventListener {
+    TiledMapRender gameMap;
+    Touchpad touchpad;
 
     private void makeTransparent(Actor a) {
         // make the touch pad transparent
@@ -24,13 +26,7 @@ public class TouchPadOnMapController implements SceneEventListener {
     }
 
     @Override
-    public void update(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
-        TiledMapRender gameMap = (TiledMapRender) scene.findActor("gameMap");
-        Touchpad touchpad = (Touchpad) scene.findActor("touchpad");
-
-        makeTransparent(touchpad);
-
-        if (gameMap != null) {
+    public void updateScene(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
 
 
             int blockSpeed = 3;
@@ -38,20 +34,25 @@ public class TouchPadOnMapController implements SceneEventListener {
             float x = gameMap.getDrawOffsetX() + touchpad.getKnobPercentX() * 2;
             float y = gameMap.getDrawOffsetY() + touchpad.getKnobPercentY() * -2;
 
-
             gameMap.setDrawOffset(x, y);
-
-
-        }
     }
 
     @Override
-    public void sceneCreated(UIScene scene) {
+    public void enterScene(UIScene scene) {
+        gameMap = (TiledMapRender) scene.findActor("gameMap");
+        touchpad = (Touchpad) scene.findActor("touchpad");
+
+        makeTransparent(touchpad);
 
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void exitScene(UIScene scene) {
+
+    }
+
+    @Override
+    public void drawScene(Batch batch, float parentAlpha) {
 
     }
 

@@ -19,7 +19,7 @@ public class ControllerLayer extends Actor {
     public void draw(Batch batch, float parentAlpha) {
 
         if (this.sceneEventListener != null)
-            this.sceneEventListener.draw(batch, parentAlpha);
+            this.sceneEventListener.drawScene(batch, parentAlpha);
 
     }
 

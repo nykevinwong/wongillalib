@@ -112,6 +112,8 @@ public class WongillaScript implements Disposable {
     }
 
 
+    protected UIScene lastRenderedScene = null;
+
     // this loads everything into stage.
     public void RenderScene(String startSceneName) {
         Array<XmlReader.Element> scenes;
@@ -128,8 +130,8 @@ public class WongillaScript implements Disposable {
 
         int Count = 0;
 
-        for (XmlReader.Element scene : scenes) {
-            String sceneName = scene.getAttribute("name", "Scene_" + Count++);
+        for (XmlReader.Element sceneElement : scenes) {
+            String sceneName = sceneElement.getAttribute("name", "Scene_" + Count++);
 
             if (startSceneName.equalsIgnoreCase(sceneName)) {
                 stage.clear();
@@ -138,17 +140,17 @@ public class WongillaScript implements Disposable {
                 scopeService.clearScopeVariables(); // clear all temporary variables
 
 
-                String controllerName = scene.getAttribute("controller", null);
+                String controllerName = sceneElement.getAttribute("controller", null);
                 scopeService.setCurrentController(controllerName);
 
-                int count = scene.getChildCount();
-                UIScene gScene = new UIScene();
-                gScene.setName(sceneName);
-                gScene.setControllerName(controllerName);
-                gScene.setFillParent(true);
+                int count = sceneElement.getChildCount();
+                UIScene currentScene = new UIScene();
+                currentScene.setName(sceneName);
+                currentScene.setControllerName(controllerName);
+                currentScene.setFillParent(true); // fixed: the table is not full-sized based on window size
 
                 for (int i = 0; i < count; i++) {
-                    XmlReader.Element child = scene.getChild(i);
+                    XmlReader.Element child = sceneElement.getChild(i);
 
                     // use factory and dictionary
                     // todo:
@@ -159,17 +161,23 @@ public class WongillaScript implements Disposable {
                     Actor a = CreateActorFromElement(child);
 
                     if (a != null) {
-                        gScene.addActor(a);
+                        currentScene.addActor(a);
                     }
 
                 }
                 Object controller = scopeService.getCurrentController();
 
-                if (controller instanceof SceneEventListener) {
-                    ((SceneEventListener) controller).sceneCreated(gScene);
+                if(lastRenderedScene!=null)
+                {
+                    // ToDO: perform exitScene here
                 }
 
-                stage.addActor(gScene);
+                if (controller instanceof SceneEventListener) {
+                    ((SceneEventListener) controller).enterScene(currentScene);
+                }
+
+                stage.addActor(currentScene);
+                lastRenderedScene = currentScene;
                 break;
             }
 
@@ -240,7 +248,7 @@ public class WongillaScript implements Disposable {
         if (scene != null ) {
             SceneEventListener listener = (SceneEventListener) scopeService.getController(scene.getControllerName());
             if (listener != null)
-                listener.update(scene, this, scopeService, assetService);
+                listener.updateScene(scene, this, scopeService, assetService);
         }
 
     }

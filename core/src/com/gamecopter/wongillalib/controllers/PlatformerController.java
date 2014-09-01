@@ -55,7 +55,7 @@ public class PlatformerController implements SceneEventListener {
     Label l;
 
     @Override
-    public void sceneCreated(UIScene scene) {
+    public void enterScene(UIScene scene) {
         gameMap = (TiledMapRender) scene.findActor("gameMap");
         touchpad = (Touchpad) scene.findActor("touchpad");
         player = (Animator) scene.findActor("kenny");
@@ -88,12 +88,17 @@ public class PlatformerController implements SceneEventListener {
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void exitScene(UIScene scene) {
 
     }
 
     @Override
-    public void update(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
+    public void drawScene(Batch batch, float parentAlpha) {
+
+    }
+
+    @Override
+    public void updateScene(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
 
             entity.update();
             entity.draw();

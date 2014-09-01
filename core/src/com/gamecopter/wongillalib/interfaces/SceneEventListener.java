@@ -11,10 +11,12 @@ import com.gamecopter.wongillalib.WongillaScript;
  */
 public interface SceneEventListener {
 
-    void update(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService);
+    void updateScene(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService);
 
-    void sceneCreated(UIScene scene);
+    void enterScene(UIScene scene);
 
-    void draw(Batch batch, float parentAlpha);
+    void exitScene(UIScene scene);
+
+    void drawScene(Batch batch, float parentAlpha);
 
 }

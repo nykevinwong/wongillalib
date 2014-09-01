@@ -13,12 +13,11 @@ import com.gamecopter.wongillalib.WongillaScript;
  * Created by Kevin Wong on 6/29/2014.
  */
 public class TouchPadController implements SceneEventListener {
-    @Override
-    public void update(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
-        Actor image1 = scene.findActor("image1");
+    Actor image1;
+    Touchpad touchpad;
 
-        if (image1 != null) {
-            Touchpad touchpad = (Touchpad) scene.findActor("touchpad");
+    @Override
+    public void updateScene(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService) {
             int blockSpeed = 3;
             //Move blockSprite with TouchPad
             float x = image1.getX() + touchpad.getKnobPercentX() * blockSpeed;
@@ -27,16 +26,21 @@ public class TouchPadController implements SceneEventListener {
 
             image1.setX(x);
             image1.setY(y);
-        }
     }
 
     @Override
-    public void sceneCreated(UIScene scene) {
+    public void enterScene(UIScene scene) {
+        image1 = scene.findActor("image1");
+        touchpad = (Touchpad) scene.findActor("touchpad");
+    }
+
+    @Override
+    public void exitScene(UIScene scene) {
 
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
+    public void drawScene(Batch batch, float parentAlpha) {
 
     }
 }

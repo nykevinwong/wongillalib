@@ -100,13 +100,13 @@ public class TiledMapRender extends Actor {
         int errorY = 0;
 
         if (drawOffsetX > 0) {
-            // draw from xo to xr
+            // drawScene from xo to xr
             xo = (int) (drawOffsetX / (double) this.eWidth);
             xr = (int) (drawOffsetX % this.eWidth);
         }
 
         if (drawOffsetY > 0) {
-            //draw from yo to yr
+            //drawScene from yo to yr
             yo = (int) (drawOffsetY / (double) this.eHeight);
             yr = (int) (drawOffsetY % this.eHeight);
         }
@@ -133,13 +133,13 @@ public class TiledMapRender extends Actor {
                     viewBoundHeight += 1;
 
                 if ((drawOffsetX % eWidth) > 0) {
-                    // we only draw partial of the first tile on the row, then we need to add 1 to viewBoundWidth
+                    // we only drawScene partial of the first tile on the row, then we need to add 1 to viewBoundWidth
                     viewBoundWidth += 1;
 
                 }
 
                 if ((drawOffsetY % eHeight) > 0) {
-                    // we only draw partial of the first tile on the column, then we need to add 1 to viewBoundHeight
+                    // we only drawScene partial of the first tile on the column, then we need to add 1 to viewBoundHeight
                     viewBoundHeight += 1;
 
                 }
@@ -158,7 +158,7 @@ public class TiledMapRender extends Actor {
 
                             TextureRegion region = cell.getTile().getTextureRegion();
 
-                            // batch.draw(mapTexture[ximg][yimg], xp - xr, ( yp - yr)  , this.eWidth, this.eHeight);
+                            // batch.drawScene(mapTexture[ximg][yimg], xp - xr, ( yp - yr)  , this.eWidth, this.eHeight);
                             // the position specified here is for lower-left corner.
                             batch.draw(region, xp - xr, Gdx.app.getGraphics().getHeight() - (yp - yr), eWidth, eHeight);
 

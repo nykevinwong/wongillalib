@@ -23,7 +23,6 @@ public class WongillalibTest extends ApplicationAdapter {
         stage = new Stage();
 
         wongillaScript = new WongillaScript(stage, this);
-        wongillaScript.loadDefaultLibraries();
         wongillaScript.loadLibraries();
 
 

@@ -53,7 +53,7 @@ public class Namespace {
             return null;
 
         if(parentNamespace!=null) {
-            ArrayList<Namespace> namespaces = parentNamespace.getChild();
+            ArrayList<Namespace> namespaces = parentNamespace.getChilds();
 
             if(namespaces!=null) {
                 for (Namespace ns : namespaces) {
@@ -94,7 +94,7 @@ public class Namespace {
         this.parent = parent;
     }
 
-    public ArrayList<Namespace>  getChild() {
+    public ArrayList<Namespace> getChilds() {
         return childs;
     }
 
@@ -134,6 +134,26 @@ public class Namespace {
         }while(ns !=null);
 
         return fullName;
+    }
+
+    public boolean isNamespaceListEmpty()
+    {
+        return (childs == null || (childs.size()==0) );
+    }
+
+    public boolean isElementListEmpty()
+    {
+        return (elements == null || (elements.size()==0) );
+    }
+
+    public boolean isAttributeListEmpty()
+    {
+        return (attributes == null || (attributes.size()==0) );
+    }
+
+    public boolean isDirectiveAvailable()
+    {
+        return isElementListEmpty() && isAttributeListEmpty();
     }
 
     public void addElement(ElementDirective d)

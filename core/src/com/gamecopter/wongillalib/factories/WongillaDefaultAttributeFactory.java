@@ -19,9 +19,9 @@ import java.util.ArrayList;
 /**
  * Created by Kevin Wong on 6/24/2014.
  */
-public class AttributeFactory extends DirectiveFactory<AttributeDirective> {
+public class WongillaDefaultAttributeFactory extends DirectiveFactory<AttributeDirective> {
 
-    public AttributeFactory(ScopeService scopeService) {
+    public WongillaDefaultAttributeFactory(ScopeService scopeService) {
         super(scopeService, null);
     }
 

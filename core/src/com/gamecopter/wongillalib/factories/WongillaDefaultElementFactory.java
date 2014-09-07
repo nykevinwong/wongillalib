@@ -28,9 +28,9 @@ import java.util.ArrayList;
 /**
  * Created by Kevin Wong on 6/24/2014.
  */
-public class ElementFactory extends DirectiveFactory<ElementDirective> {
+public class WongillaDefaultElementFactory extends DirectiveFactory<ElementDirective> {
 
-    public ElementFactory(ScopeService scopeService, AssetService assetService) {
+    public WongillaDefaultElementFactory(ScopeService scopeService, AssetService assetService) {
         super(scopeService, assetService);
     }
 

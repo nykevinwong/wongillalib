@@ -10,8 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.XmlReader;
-import com.gamecopter.wongillalib.factories.AttributeFactory;
-import com.gamecopter.wongillalib.factories.ElementFactory;
+import com.gamecopter.wongillalib.factories.WongillaDefaultAttributeFactory;
+import com.gamecopter.wongillalib.factories.WongillaDefaultElementFactory;
+import com.gamecopter.wongillalib.interfaces.LoadLibraryEventListener;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
@@ -29,29 +30,73 @@ public class WongillaScript implements Disposable {
 
     XmlReader.Element xml_element;
 
-   Namespace rootNamespace = Namespace.createRootNamespace("ROOT");
+    Namespace rootNamespace = Namespace.createRootNamespace("ROOT");
+
+    ArrayList<LoadLibraryEventListener> loadLibraryEventListeners = new ArrayList<LoadLibraryEventListener>();
+    ArrayList<String> importedNamespaceNames = new ArrayList<String>();
 
     AssetService assetService = new AssetService();
     private ScopeService scopeService;
     Stage stage;
 
     public WongillaScript(Stage s, Object rootController) {
+        this(s, rootController, true);
+    }
 
-
+    public WongillaScript(Stage s, Object rootController, boolean loadDefaultLibraries) {
         stage = s;
         scopeService = new ScopeService(this, rootController);
 
-        ElementFactory elementFactory = new ElementFactory(scopeService, assetService);
-        AttributeFactory attributeFactory = new AttributeFactory(scopeService);
+        if(loadDefaultLibraries)
+            this.loadDefaultLibraries();
+    }
 
-        ArrayList<ElementDirective> DirectiveElements = new ArrayList<ElementDirective>();
-        ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
+    public void loadDefaultLibraries()
+    {
+        LoadLibraryEventListener listener = createDefaultNamespaceEventListener(scopeService, assetService);
+        loadLibraryEventListeners.add(listener);
 
-        DirectiveElements.addAll(elementFactory.createDirectives());
-        CommonAttributes.addAll(attributeFactory.createDirectives());
+        // no need to use import tag on wongilla script to import this default namespace
+        importedNamespaceNames.add(listener.getNamespaceFullName());
+    }
 
-        rootNamespace.namespace("wongila.libgdx.scene2d").addElements(DirectiveElements);
-        rootNamespace.namespace("wongila.libgdx.scene2d").addAttributes(CommonAttributes);
+    public void loadLibraries()
+    {
+
+        for(LoadLibraryEventListener listener : loadLibraryEventListeners)
+        {
+            listener.addLibrary(rootNamespace, scopeService, assetService);
+        }
+
+    }
+
+    protected LoadLibraryEventListener createDefaultNamespaceEventListener(ScopeService scopeService, AssetService assetService)
+    {
+        LoadLibraryEventListener defaultListener = new LoadLibraryEventListener() {
+            @Override
+            public String getNamespaceFullName() {
+                return "wongila.libgdx.scene2d";
+            }
+
+            @Override
+            public void addLibrary(Namespace rootNamespace, ScopeService scopeService, AssetService assetService) {
+                String namespaceFullName = getNamespaceFullName();
+                WongillaDefaultElementFactory elementFactory = new WongillaDefaultElementFactory(scopeService, assetService);
+                WongillaDefaultAttributeFactory attributeFactory = new WongillaDefaultAttributeFactory(scopeService);
+
+                ArrayList<ElementDirective> DirectiveElements = new ArrayList<ElementDirective>();
+                ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
+
+                DirectiveElements.addAll(elementFactory.createDirectives());
+                CommonAttributes.addAll(attributeFactory.createDirectives());
+
+                rootNamespace.namespace(namespaceFullName).addElements(DirectiveElements);
+                rootNamespace.namespace(namespaceFullName).addAttributes(CommonAttributes);
+
+            }
+        };
+
+        return defaultListener;
     }
 
 
@@ -67,32 +112,38 @@ public class WongillaScript implements Disposable {
         String name = e.getName();
         Actor a = null;
 
-            Namespace importedNamespace =  rootNamespace.namespace("wongila.libgdx.scene2d");
 
+        for(String namespaceName : importedNamespaceNames) {
+            Namespace importedNamespace = rootNamespace.namespace(namespaceName);
 
-            ArrayList<ElementDirective> DirectiveElements = importedNamespace.getElements();
-            ArrayList<AttributeDirective> CommonAttributes = importedNamespace.getAttributes();
+            if(!importedNamespace.isElementListEmpty()) {
+                ArrayList<ElementDirective> DirectiveElements = importedNamespace.getElements();
 
-            for (ElementDirective d : DirectiveElements) {
+                for (ElementDirective d : DirectiveElements) {
 
-                if (name.equalsIgnoreCase(d.getName())) {
-                    a = d.processDirective(null, e);
+                    if (name.equalsIgnoreCase(d.getName())) {
+                        a = d.processDirective(null, e);
 
-                    if (a != null) {
+                        if (a != null) {
 
-                        if (d.isApplyCommonAttribute()) {
-                            for (AttributeDirective ad : CommonAttributes) {
-                                a = ad.processDirective(a, e);
+                            if (d.isApplyCommonAttribute()) {
+                                if (!importedNamespace.isAttributeListEmpty()) {
+
+                                    ArrayList<AttributeDirective> CommonAttributes = importedNamespace.getAttributes();
+                                    for (AttributeDirective ad : CommonAttributes) {
+                                        a = ad.processDirective(a, e);
+                                    }
+
+                                }
                             }
+
                         }
 
+                        return a;
                     }
-
-                    return a;
                 }
             }
-
-
+        }
 
         return a;
     }

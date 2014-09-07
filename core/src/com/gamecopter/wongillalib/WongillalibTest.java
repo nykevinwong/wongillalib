@@ -3,8 +3,6 @@ package com.gamecopter.wongillalib;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.gamecopter.wongillalib.controllers.DefaultController;
 import com.gamecopter.wongillalib.controllers.PlatformerController;
@@ -25,6 +23,10 @@ public class WongillalibTest extends ApplicationAdapter {
         stage = new Stage();
 
         wongillaScript = new WongillaScript(stage, this);
+        wongillaScript.loadDefaultLibraries();
+        wongillaScript.loadLibraries();
+
+
         wongillaScript.addController("DefaultController", new DefaultController());
         wongillaScript.addController("TouchPadOnMapController", new TouchPadOnMapController());
         wongillaScript.addController("TouchPadController", new TouchPadController());

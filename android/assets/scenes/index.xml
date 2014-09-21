@@ -3,7 +3,7 @@
         <import></import>
     </imports>
 
-    <scene name="startMenu">
+    <scene name="startMenu" controller="DefaultController">
 
         <table debug="table" fillX="true">
             <tr>

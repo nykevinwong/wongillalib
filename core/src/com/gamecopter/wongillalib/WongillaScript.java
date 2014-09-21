@@ -65,7 +65,10 @@ public class WongillaScript implements Disposable {
 
         for(LoadLibraryEventListener listener : loadLibraryEventListeners)
         {
-            listener.addLibrary(rootNamespace, scopeService, assetService);
+            // only import if it is never created before.
+            if(!Namespace.isNamespaceCreated(rootNamespace, "ROOT." + listener.getNamespaceFullName())) {
+                listener.addLibrary(rootNamespace, scopeService, assetService);
+            }
         }
 
     }
@@ -82,9 +85,6 @@ public class WongillaScript implements Disposable {
             public void addLibrary(Namespace rootNamespace, ScopeService scopeService, AssetService assetService) {
                 String namespaceFullName = getNamespaceFullName();
 
-                // only import if it is never created before.
-                if(!Namespace.isNamespaceCreated(rootNamespace, "ROOT." + namespaceFullName)) {
-
                     WongillaDefaultElementFactory elementFactory = new WongillaDefaultElementFactory(scopeService, assetService);
                     WongillaDefaultAttributeFactory attributeFactory = new WongillaDefaultAttributeFactory(scopeService);
 
@@ -96,8 +96,6 @@ public class WongillaScript implements Disposable {
 
                     rootNamespace.namespace(namespaceFullName).addElements(DirectiveElements);
                     rootNamespace.namespace(namespaceFullName).addAttributes(CommonAttributes);
-                }
-
             }
         };
 
@@ -302,9 +300,14 @@ public class WongillaScript implements Disposable {
         UIScene scene = this.getCurrentScene();
 
         if (scene != null ) {
-            SceneEventListener listener = (SceneEventListener) scopeService.getController(scene.getControllerName());
-            if (listener != null)
-                listener.updateScene(scene, this, scopeService, assetService);
+            Object controller = scopeService.getController(scene.getControllerName());
+
+            if(controller instanceof  SceneEventListener) {
+                SceneEventListener listener = (SceneEventListener) controller;
+                if (listener != null)
+                    listener.updateScene(scene, this, scopeService, assetService);
+            }
+
         }
 
     }

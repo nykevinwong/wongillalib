@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.gamecopter.wongillalib.interfaces.TileCollisionEventListener;
 
 /**
  * Created by Kevin Wong on 7/17/2014.
@@ -21,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 public class TiledMapRender extends Actor {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    protected TileCollisionEventListener tileCollison;
 
     int eWidth = 16;
     int eHeight = 16;
@@ -28,12 +30,22 @@ public class TiledMapRender extends Actor {
     public TiledMapRender(String tmxFilePath) {
         map = new TmxMapLoader().load(tmxFilePath);
 
-
     }
 
-    public void setDebug(Label label) {
+    public void setTileCollisonEventListener(TileCollisionEventListener tileCollison)
+    {
+        this.tileCollison = tileCollison;
+    }
+
+    public TileCollisionEventListener getTileCollisonEventListener()
+    {
+        return this.tileCollison;
+    }
+
+    public void attachDebugInfoLabel(Label label) {
         final Label l = label;
         final TiledMapRender render = this;
+        final TileCollisionEventListener tCollison = this.tileCollison;
 
         this.setWidth(Gdx.graphics.getWidth());
         this.setHeight(Gdx.graphics.getHeight());
@@ -54,7 +66,10 @@ public class TiledMapRender extends Actor {
 
                     int index = render.getLayerMapIndex(0, (int) tmpX, (int) tmpY);
 
-                    String info = "Clicked at (" + (int) tmpX + "," + (int) tmpY + ") = map index: [" + index + "] : colliable:" + render.isCollidableTile(index);
+                    String info = "Clicked at (" + (int) tmpX + "," + (int) tmpY + ") = map index: [" + index + "] ";
+
+                    if(tileCollison!=null)
+                    info+= ": colliable:" + tCollison.isCollidableTile(index);
 
                     l.setText(info);
                 }
@@ -236,33 +251,9 @@ public class TiledMapRender extends Actor {
         return -1;
     }
 
-    public boolean isCollidableTile(int index) {
-
-        if (index == 192 || // box
-                index == 265 || // green smily
-                index == 131 || // question mark
-                index == 132) // question mark
-        {
-            return true;
-        }
-
-        if (index <= (240)) {
-            int remainder = index % 30;
-
-            if (remainder <= 10)
-                return true;
-
-        }
-
-        return false;
-    }
 
     private String lastMessage = "";
-    private int lastCoolidedTileIndex = 0;
 
-    public int getLastCollidedTileIndex() {
-        return lastCoolidedTileIndex;
-    }
 
     public void replaceTile(int layerIndex, int x, int y, int index) {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(layerIndex);
@@ -275,36 +266,24 @@ public class TiledMapRender extends Actor {
 
     }
 
+
+    public MapLayers getLayers()
+    {
+        return map.getLayers();
+    }
+
+    public boolean isCollidableTile(int tileIndex)
+    {
+        if(tileCollison!=null)
+            return  tileCollison.isCollidableTile(tileIndex);
+
+        return false;
+    }
+
     public boolean isCollided(int layerIndex, float unitPosX, float unitPosY, float unitSpriteWidth, float unitSpriteHeight) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(layerIndex);
-        lastCoolidedTileIndex = 0;
 
-        float tileWidth = layer.getTileWidth();
-        float tileHeight = layer.getTileHeight();
-
-        int startX = (int) unitPosX;
-        int endX = (int) (unitPosX + unitSpriteWidth - (1 / tileWidth)); // - 1 pixel, only check from 0 to 31. not 0 to 32.
-
-        int startY = (int) unitPosY;
-        int endY = (int) (unitPosY + unitSpriteHeight - (1 / tileHeight)); // - 1 pixel
-
-        String hitMessage = "Checked Tiles: ";
-
-        for (int x = startX; x <= endX; x++)
-            for (int y = startY; y <= endY; y++) {
-                int index = getLayerMapIndex(layerIndex, x, y);
-
-                hitMessage += ", (" + x + "," + y + ") = " + index;
-
-
-                if (index != -1 &&
-                        isCollidableTile(index)) {
-                    lastCoolidedTileIndex = index;
-                    return true;
-                }
-
-            }
-
+        if(tileCollison!=null)
+            return  tileCollison.isCollided(this, layerIndex, unitPosX, unitPosY, unitSpriteWidth, unitSpriteHeight);
 
         return false;
     }

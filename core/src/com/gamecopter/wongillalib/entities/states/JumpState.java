@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.gamecopter.wongillalib.entities.EntityBase;
+import com.gamecopter.wongillalib.interfaces.TileCollisionEventListener;
 import com.gamecopter.wongillalib.utils.Sound;
 
 /**
@@ -89,15 +90,19 @@ public class JumpState extends EntityState {
                     }
 
                 } else {
-                    int lastCollidedTileIndex = entity.getGameMap().getLastCollidedTileIndex();
+                    TileCollisionEventListener l = entity.getGameMap().getTileCollisonEventListener();
 
-                    if (lastCollidedTileIndex == 132) // hit the question mark
-                    {
-                        try {
-                            entity.getGameMap().replaceTile(0, (int) futureX, (int) futureY, 131);
-                            Sound.hit.play();
-                        } catch (Exception ex) {
+                    if(l!=null) {
+                        int lastCollidedTileIndex = l.getLastCollidedTileIndex();
 
+                        if (lastCollidedTileIndex == 132) // hit the question mark and turn the question mark tile into a disabled question mark tile.
+                        {
+                            try {
+                                entity.getGameMap().replaceTile(0, (int) futureX, (int) futureY, 131);
+                                Sound.hit.play();
+                            } catch (Exception ex) {
+
+                            }
                         }
                     }
 

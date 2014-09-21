@@ -24,6 +24,18 @@ Please install Android SDK rev 19+, IntelliJ 13.1.2+, and Java SDK 1.7 u51+.
 Please follow libgdx documentation/video tutorials to see how to compile/run a libgdx project.
 http://libgdx.badlogicgames.com/documentation.html
 
+Tutorial
+=======
+
+Currently no step-by-step tutorial is available yet. 
+
+Please look into the source code if you want to do the followings:
+
+-if you want to implement your own HTML-like directive to render your own Scene2D component, Please check the following implemention in CreateLabelDirective function at WongillaDefaultElementFactory.java: CreateLabelDirective(), CreateCheckboxDirective(), CreateTextFieldDirective(), CreateTouchPadDirective(), and etc.
+
+-You can learn to how to create your own HTML-like directive and complicate Actor component by reading through each function in WongillaDefaultElementFactory.java and WongillaDefaultAttributeFactory.java 
+
+
 Code Example
 ========
 

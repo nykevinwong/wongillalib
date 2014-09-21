@@ -1,7 +1,6 @@
 <wongilla>
     <scene name="platformerScene" controller="PlatformerController">
 
-        <pixmap name="level1" path="images/newlevels.png"/>
         <texture name="kennyTexture" path="images/spritesheet.png"/>
         <tileset name="kennyTileSet" src="kennyTexture" margin="2" cellspacing="2" col="30" row="30" tile-width="21"
                  tile-height="21"/>
@@ -34,7 +33,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <textfield value="MAX_DISTANCE" numeric="true" visible="false" ></textfield>
+                                <textfield value="MAX_DISTANCE" numeric="true"></textfield>
                             </td>
                         </tr>
                     </table>
@@ -49,11 +48,11 @@
         </table>
 
         <textbutton x="91" y="70" OnClickTo="index.xml">Back to Start Menu</textbutton>
-        <textbutton x="291" y="70" OnClickTo="resetEntity()" visible="false" >Reset Entity</textbutton>
-        <textbutton x="391" y="70" OnClickTo="enableGravity()" visible="false" >Gravity</textbutton>
+        <textbutton x="291" y="70" OnClickTo="resetEntity()">Reset Entity</textbutton>
+        <textbutton x="391" y="70" OnClickTo="enableGravity()">Gravity</textbutton>
 
         <label name="info" x="0" y="0">Info</label>
-        <label name="mapInfo" x="300" y="0" visible="false">Info</label>
+        <label name="mapInfo" x="300" y="0">Info</label>
 
 
     </scene>

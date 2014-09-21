@@ -6,7 +6,7 @@
         <table name="table1" debug="all">
             <tr>
                 <td>
-                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                    <textbutton OnClickTo="index.xml">Back to Start Menu</textbutton>
                 </td>
                 <td>
                     <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>
@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <td>
-                    <textbutton OnClickTo="startMenu">Back to Start Menu</textbutton>
+                    <textbutton OnClickTo="index.xml">Back to Start Menu</textbutton>
                 </td>
                 <td>
                     <textbutton OnClickTo="DefaultController.SwitchColor()">Call SwitchColor() method</textbutton>

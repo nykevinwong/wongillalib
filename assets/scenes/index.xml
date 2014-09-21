@@ -1,5 +1,9 @@
 <wongilla>
-    <scene name="startMenu">
+    <imports>
+        <import></import>
+    </imports>
+
+    <scene name="startMenu" controller="DefaultController">
 
         <table debug="table" fillX="true">
             <tr>

@@ -1,7 +1,7 @@
-wongillalib
+Wongillalib
 ===========
 
-wongillalib provides a UI script where you can apply most Libgdx scene2D via a html-like syntax language for your game user interface. You can even implement your own HTML-like directive and render your own component.
+Wongillalib provides a UI script where you can apply most Libgdx scene2D via a html-like syntax language for your game user interface. You can even implement your own HTML-like directive and render your own component.
 
 Demo
 ========
@@ -17,6 +17,12 @@ Z = Jump
 How to restart the platform game: 
 1. Refresh the current page and click Platformer Game button again.
 
+Project Setup
+=======
+
+Please install Android SDK rev 19+, IntelliJ 13.1.2+, and Java SDK 1.7 u51+.
+Please follow libgdx documentation/video tutorials to see how to compile/run a libgdx project.
+http://libgdx.badlogicgames.com/documentation.html
 
 Code Example
 ========
@@ -409,10 +415,5 @@ The Example of a Tiled Map with a TouchPad
 
 
 
-Project Setup
-=======
 
-Please install Android SDK rev 19+, IntelliJ 13.1.2+, and Java SDK 1.7 u51+.
-Please follow libgdx documentation/video tutorials to see how to compile/run a libgdx project.
-http://libgdx.badlogicgames.com/documentation.html
 

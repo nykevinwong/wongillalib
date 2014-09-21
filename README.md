@@ -14,6 +14,10 @@ Instruction:
 Up,Down,Left,Right for direction.
 Z = Jump
 
+How to restart the platform game: 
+1. Refresh the current page and click Platformer Game button again.
+
+
 Code Example
 ========
 

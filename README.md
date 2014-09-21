@@ -1,7 +1,10 @@
 Wongillalib
 ===========
 
-Wongillalib provides a UI script where you can apply most Libgdx scene2D via a html-like syntax language for your game user interface. You can even implement your own HTML-like directive and render your own component.
+Wongillalib provides a UI script where you can apply most Libgdx scene2D Actor component via a html-like syntax language for your game user interface. You can even implement your own HTML-like directive and render your own component.
+
+Wnat are the examples of Libgdx scene2D Actor components?
+textbutton, textfield, checkbox, table and tilemapRender and so on.
 
 Demo
 ========

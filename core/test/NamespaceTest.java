@@ -11,15 +11,14 @@ import static org.junit.Assert.assertTrue;
 public class NamespaceTest {
 
     @Test
-    public void SameFullNameTest()
-    {
+    public void SameFullNameTest() {
         Namespace root = Namespace.createRootNamespace("root");
         Namespace a = root.namespace("com.gamecopter.wongillalib");
         Namespace b = root.namespace("com").namespace("gamecopter").namespace("wongillalib");
         Namespace c = root.namespace("com").namespace("gamecopter.wongillalib");
         Namespace d = root.namespace("com.gamecopter").namespace("wongillalib");
 
-        assertEquals(a.getFullName(),  b.getFullName());
+        assertEquals(a.getFullName(), b.getFullName());
         assertEquals(a.getFullName(), b.getFullName());
         assertEquals(a.getFullName(), c.getFullName());
         assertEquals(a.getFullName(), d.getFullName());
@@ -40,8 +39,7 @@ public class NamespaceTest {
     }
 
     @Test
-    public void SameNameSameReferenceTest()
-    {
+    public void SameNameSameReferenceTest() {
         Namespace root = Namespace.createRootNamespace("root");
         Namespace a = root.namespace("com.gamecopter.wongillalib");
         Namespace b = root.namespace("com").namespace("gamecopter").namespace("wongillalib");
@@ -54,7 +52,28 @@ public class NamespaceTest {
         assertTrue(b == c);
         assertTrue(b == d);
         assertTrue(c == d);
-     
+
     }
 
+    @Test
+    public void NamespaceCreationCheckTest() {
+        Namespace root = Namespace.createRootNamespace("root");
+        Namespace a = root.namespace("com.gamecopter.wongillalib");
+
+
+        // commented wrong tests
+  //      assertTrue( Namespace.isNamespaceCreated(a, "test") == false );
+//        assertTrue( Namespace.isNamespaceCreated(a, "root") == false );
+
+ //       assertTrue( Namespace.isNamespaceCreated(a, "com") );
+//        assertTrue( Namespace.isNamespaceCreated(a, "com.gamecopter") );
+ //       assertTrue( Namespace.isNamespaceCreated(a, "com.gamecopter.wongillalib") );
+
+   //     assertTrue( Namespace.isNamespaceCreated(a, "gamecopter.wongillalib") == false );
+
+        assertTrue( Namespace.isNamespaceCreated(root, "root.com.gamecopter.wongillalib") );
+        assertTrue( Namespace.isNamespaceCreated(root, "root") );
+
+        assertTrue( Namespace.isNamespaceCreated(root, "com.gamecopter.wongillalib") == false );
+    }
 }

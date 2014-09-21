@@ -36,6 +36,45 @@ public class Namespace {
         return parent;
     }
 
+    public static boolean isNamespaceCreated(Namespace ns, String name)
+    {
+        String[] names = name.split("\\.");
+
+
+        Namespace p = ns;
+
+        int count = 0;
+
+        if(names.length >= 1)
+        {
+           if(p.getName().equalsIgnoreCase(names[count]))
+           {
+               if(names.length==1) // found already
+                   return true;
+
+               count++;
+
+               while(count < names.length)
+               {
+                   Namespace child = p.getChild(names[count]);
+
+                   if(child==null)
+                       return false;
+
+                   p = child;
+                   count++;
+               }
+
+
+               return true;
+           }
+
+
+        }
+
+        return false;
+    }
+
     /**
      *
      * @param singleName the name of Root namespace.
@@ -75,6 +114,20 @@ public class Namespace {
 
     public Namespace getParent() {
         return parent;
+    }
+
+    public Namespace getChild(String namespace)
+    {
+        if(childs!=null && childs.size() > 0) {
+
+            for (Namespace ns : childs) {
+                if (ns.getName().equalsIgnoreCase(namespace)) {
+                    return ns;
+                }
+            }
+        }
+
+        return null;
     }
 
     public boolean containsChild(String namespace)

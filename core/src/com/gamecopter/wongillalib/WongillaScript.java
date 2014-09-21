@@ -81,17 +81,22 @@ public class WongillaScript implements Disposable {
             @Override
             public void addLibrary(Namespace rootNamespace, ScopeService scopeService, AssetService assetService) {
                 String namespaceFullName = getNamespaceFullName();
-                WongillaDefaultElementFactory elementFactory = new WongillaDefaultElementFactory(scopeService, assetService);
-                WongillaDefaultAttributeFactory attributeFactory = new WongillaDefaultAttributeFactory(scopeService);
 
-                ArrayList<ElementDirective> DirectiveElements = new ArrayList<ElementDirective>();
-                ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
+                // only import if it is never created before.
+                if(!Namespace.isNamespaceCreated(rootNamespace, "ROOT." + namespaceFullName)) {
 
-                DirectiveElements.addAll(elementFactory.createDirectives());
-                CommonAttributes.addAll(attributeFactory.createDirectives());
+                    WongillaDefaultElementFactory elementFactory = new WongillaDefaultElementFactory(scopeService, assetService);
+                    WongillaDefaultAttributeFactory attributeFactory = new WongillaDefaultAttributeFactory(scopeService);
 
-                rootNamespace.namespace(namespaceFullName).addElements(DirectiveElements);
-                rootNamespace.namespace(namespaceFullName).addAttributes(CommonAttributes);
+                    ArrayList<ElementDirective> DirectiveElements = new ArrayList<ElementDirective>();
+                    ArrayList<AttributeDirective> CommonAttributes = new ArrayList<AttributeDirective>();
+
+                    DirectiveElements.addAll(elementFactory.createDirectives());
+                    CommonAttributes.addAll(attributeFactory.createDirectives());
+
+                    rootNamespace.namespace(namespaceFullName).addElements(DirectiveElements);
+                    rootNamespace.namespace(namespaceFullName).addAttributes(CommonAttributes);
+                }
 
             }
         };

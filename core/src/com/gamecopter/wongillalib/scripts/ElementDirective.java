@@ -74,6 +74,7 @@ public abstract class ElementDirective implements IDirective {
         return applyCommonAttribute;
     }
 
+
     public void setApplyCommonAttribute(boolean applyCommonAttribute) {
         this.applyCommonAttribute = applyCommonAttribute;
     }

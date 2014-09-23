@@ -1,15 +1,18 @@
 package com.gamecopter.wongillalib.factories;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 
@@ -54,6 +57,7 @@ public class WongillaDefaultElementFactory extends DirectiveFactory<ElementDirec
         CommonElements.add(CreateAnimatorDirective());
         CommonElements.add(CreateTiledMapRenderDirective());
         CommonElements.add(CreateControllerLayerDirective());
+        CommonElements.add(CreateDialogDirective());
 
         return CommonElements;
     }
@@ -348,6 +352,40 @@ public class WongillaDefaultElementFactory extends DirectiveFactory<ElementDirec
 
         return d;
     }
+
+    public ElementDirective CreateDialogDirective() {
+        ElementDirective d = new ElementDirective("confirmDialog"){
+
+            @Override
+            // createInstance creates an object or actor based on XML element.
+            public Actor createInstance(XmlReader.Element iElement) {
+                String title = iElement.get("title","");
+                final String OnClickTo = iElement.getAttribute("OnClickTo", null);
+
+                Dialog d =
+
+                new Dialog(title, assetService.getDeafaultUISkin(), "dialog") {
+                    protected void result (Object object) {
+                        if(OnClickTo!=null && !OnClickTo.isEmpty())
+                        scopeService.eval(OnClickTo ,object);
+                    }
+                }.text(iElement.getText()).button("Yes", true).button("No", false).key(Input.Keys.ENTER, true)
+                        .key(Input.Keys.ESCAPE, false).show(scopeService.getStage());
+
+
+                return d;
+            }
+
+
+        };
+
+        d.setApplyCommonAttribute(false);
+
+
+
+        return d;
+    }
+
 
     public ElementDirective CreateLabelDirective() {
         ElementDirective d = new ElementDirective("label"){

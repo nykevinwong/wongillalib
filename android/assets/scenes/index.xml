@@ -8,7 +8,7 @@
         <table debug="table" fillX="true">
             <tr>
                 <td>
-                    <textbutton OnClickTo="LoadStage()">Reload stage.xml</textbutton>
+                    <textbutton OnClickTo="$Root.LoadStage()">Reload stage.xml</textbutton>
                 </td>
             </tr>
             <tr>
@@ -26,6 +26,11 @@
                     <textbutton OnClickTo="SwitchColor()">Call
                         SwitchColor() method
                     </textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textbutton OnClickTo="confirm-dialog.xml">confirmDialog Test</textbutton>
                 </td>
             </tr>
             <tr>
@@ -69,5 +74,6 @@
                 </td>
             </tr>
         </table>
+
     </scene>
 </wongilla>

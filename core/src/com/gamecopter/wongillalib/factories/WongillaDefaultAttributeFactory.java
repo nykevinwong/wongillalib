@@ -189,12 +189,15 @@ public class WongillaDefaultAttributeFactory extends DirectiveFactory<AttributeD
         return d;
     }
 
+
+
+
     public AttributeDirective CreateOnClickToAttribute() {
         AttributeDirective d = new AttributeDirective("OnClickTo")
         {
             @Override
             public void updateInstance(Actor a, XmlReader.Element iElement) {
-                String OnClickTo = iElement.getAttribute("OnClickTo", null);
+                final String OnClickTo = iElement.getAttribute("OnClickTo", null);
                 // add click event
                 if (OnClickTo != null && !OnClickTo.isEmpty()) {
                     final String ClickToScene = OnClickTo;
@@ -204,52 +207,8 @@ public class WongillaDefaultAttributeFactory extends DirectiveFactory<AttributeD
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
 
-                            Actor a = event.getListenerActor();
-                            if (ClickToScene != null) {
+                            scope.eval(ClickToScene);
 
-                                if (ClickToScene.contains("()")) { // this is a method call
-                                    String FullName = ClickToScene.replace("()", "");
-                                    String[] Names = FullName.split("\\.");
-                                    String ControllerName, MethodName;
-
-                                    if (Names.length >= 2) {
-                                        ControllerName = Names[0];
-                                        MethodName = Names[1];
-                                    } else {
-                                        ControllerName = null;
-                                        MethodName = Names[0];
-                                    }
-
-                                    Object controller = scope.getCurrentController(); // get current assigned controller or root controller.
-
-                                    if (ControllerName != null) {
-                                        Object tmpCtrller = scope.getController(ControllerName);
-                                        if (tmpCtrller != null)
-                                            controller = tmpCtrller;
-                                    }
-
-
-                                    Method[] methods = ClassReflection.getMethods(controller.getClass());
-
-                                    for (Method m : methods) {
-                                        if (MethodName.equalsIgnoreCase(m.getName())) {
-                                            try {
-                                                m.invoke(controller, null);
-                                            } catch (Exception ex) {
-                                                String err = ex.getMessage();
-
-                                            }
-
-                                            return;
-                                        }
-                                    }
-
-
-                                    return;
-                                }
-
-                                scope.RenderScene(ClickToScene);
-                            }
                         }
                     });
 

@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.reflect.ClassReflection;
+import com.badlogic.gdx.utils.reflect.Method;
 import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.WongillaScript;
 
@@ -82,6 +84,60 @@ public class ScopeService {
 
     public void RenderScene(String name) {
         wongillaScript.RenderScene(name);
+    }
+
+    public void eval(String Expression)
+    {
+        eval(Expression, null);
+    }
+
+    public void eval(String Expression, Object... args)
+    {
+        if (Expression != null) {
+
+            if (Expression.contains("()")) { // this is a method call
+                String FullName = Expression.replace("()", "");
+                String[] Names = FullName.split("\\.");
+                String ControllerName, MethodName;
+
+                if (Names.length >= 2) {
+                    ControllerName = Names[0];
+                    MethodName = Names[1];
+                } else {
+                    ControllerName = null;
+                    MethodName = Names[0];
+                }
+
+                Object controller = this.getCurrentController(); // get current assigned controller or root controller.
+
+                if (ControllerName != null) {
+                    Object tmpCtrller = this.getController(ControllerName);
+                    if (tmpCtrller != null)
+                        controller = tmpCtrller;
+                }
+
+
+                Method[] methods = ClassReflection.getMethods(controller.getClass());
+
+                for (Method m : methods) {
+                    if (MethodName.equalsIgnoreCase(m.getName())) {
+                        try {
+                            m.invoke(controller, args);
+                        } catch (Exception ex) {
+                            String err = ex.getMessage();
+
+                        }
+
+                        return;
+                    }
+                }
+
+
+                return;
+            }
+
+            this.RenderScene(Expression);
+        }
     }
 
     public Actor CreateActorFromElement(XmlReader.Element e) {

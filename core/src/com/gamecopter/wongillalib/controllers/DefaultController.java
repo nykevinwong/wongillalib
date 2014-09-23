@@ -16,4 +16,18 @@ public class DefaultController {
         return isWhiteColor;
     }
 
+    public void OnDialogResult(Object result)
+    {
+        Boolean YesNo = (Boolean)result;
+
+        if(YesNo)
+        {
+            isWhiteColor = true;
+        }
+        else
+        {
+            isWhiteColor = false;
+        }
+
+    }
 }

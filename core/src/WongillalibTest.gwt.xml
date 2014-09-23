@@ -3,4 +3,5 @@
 <module>
 	<source path="com/gamecopter/wongillalib" />
     <extend-configuration-property name="gdx.reflect.include" value="com.gamecopter.wongillalib.controllers" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.gamecopter.wongillalib.WongillalibTest" />
 </module>

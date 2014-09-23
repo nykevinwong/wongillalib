@@ -68,7 +68,7 @@ public class TiledMapRender extends Actor {
 
                     String info = "Clicked at (" + (int) tmpX + "," + (int) tmpY + ") = map index: [" + index + "] ";
 
-                    if(tileCollison!=null)
+                    if(tCollison!=null)
                     info+= ": colliable:" + tCollison.isCollidableTile(index);
 
                     l.setText(info);

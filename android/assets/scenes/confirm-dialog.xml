@@ -1,0 +1,9 @@
+<wongilla>
+    <scene name="confirmDialogTest" controller="DefaultController">
+
+        <textbutton x="100" y="50" OnClickTo="index.xml">Back to Start Menu</textbutton>
+        <confirmDialog name="confirmDialogTest" title="Welcome"  OnClickTo="OnDialogResult()">Click Yes to turn background white or click NO to turn background blue?</confirmDialog>
+
+
+    </scene>
+</wongilla>

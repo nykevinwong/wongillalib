@@ -12,7 +12,9 @@ import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.WongillaScript;
 import com.gamecopter.wongillalib.entities.AnimalEntity;
 import com.gamecopter.wongillalib.entities.EntityBase;
+import com.gamecopter.wongillalib.entities.states.EntityState;
 import com.gamecopter.wongillalib.entities.states.StartState;
+import com.gamecopter.wongillalib.entities.states.WalkState;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.interfaces.TileCollisionEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
@@ -56,9 +58,16 @@ public class PlatformerController implements SceneEventListener {
     Animator player;
     Label l;
 
+    public void jump()
+    {
+        EntityState s = entity.getState();
+        if(s instanceof WalkState) {
+            s.jumpButton = true;
+        }
+    }
 
     @Override
-    public void enterScene(UIScene scene) {
+    public void enterScene(UIScene scene, WongillaScript wongillaScript) {
         gameMap = (TiledMapRender) scene.findActor("gameMap");
         touchpad = (Touchpad) scene.findActor("touchpad");
         player = (Animator) scene.findActor("kenny");

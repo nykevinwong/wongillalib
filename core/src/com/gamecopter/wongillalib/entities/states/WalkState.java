@@ -26,11 +26,14 @@ public class WalkState  extends EntityState {
     public void update(EntityBase entity, float deltaTime) {
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.Z) )
+        if (Gdx.input.isKeyPressed(Input.Keys.Z) || this.jumpButton == true )
         {
+            this.jumpButton = false; // this is  a button press..
 
             if(JumpPressed==false) {
                 JumpPressed = true;
+
+
 
                 if (entity.isGrounded()) {
                     entity.setGrounded(false);

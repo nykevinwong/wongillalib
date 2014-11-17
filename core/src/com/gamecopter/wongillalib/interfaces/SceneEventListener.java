@@ -13,7 +13,7 @@ public interface SceneEventListener {
 
     void updateScene(UIScene scene, WongillaScript wongillaScript, ScopeService scopeService, AssetService assetService);
 
-    void enterScene(UIScene scene);
+    void enterScene(UIScene scene, WongillaScript wongillaScript);
 
     void exitScene(UIScene scene);
 

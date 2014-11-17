@@ -19,6 +19,7 @@ import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.scripts.AttributeDirective;
 import com.gamecopter.wongillalib.scripts.ElementDirective;
 import com.gamecopter.wongillalib.scripts.Namespace;
+import com.gamecopter.wongillalib.utils.ScriptInterpreter;
 
 
 import java.util.ArrayList;
@@ -38,6 +39,17 @@ public class WongillaScript implements Disposable {
     AssetService assetService = new AssetService();
     private ScopeService scopeService;
     Stage stage;
+    ScriptInterpreter interpreter;
+
+    public ScriptInterpreter getScriptInterpreter()
+    {
+        return this.interpreter;
+    }
+
+    public void setScriptInterpreter(ScriptInterpreter interpreter)
+    {
+        this.interpreter = interpreter;
+    }
 
     public WongillaScript(Stage s, Object rootController) {
         this(s, rootController, true);
@@ -227,7 +239,7 @@ public class WongillaScript implements Disposable {
                 }
 
                 if (controller instanceof SceneEventListener) {
-                    ((SceneEventListener) controller).enterScene(currentScene);
+                    ((SceneEventListener) controller).enterScene(currentScene, this);
                 }
 
                 stage.addActor(currentScene);

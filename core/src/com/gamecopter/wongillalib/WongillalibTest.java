@@ -3,26 +3,45 @@ package com.gamecopter.wongillalib;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.gamecopter.wongillalib.controllers.DefaultController;
-import com.gamecopter.wongillalib.controllers.PlatformerController;
-import com.gamecopter.wongillalib.controllers.TouchPadController;
-import com.gamecopter.wongillalib.controllers.TouchPadOnMapController;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.gamecopter.wongillalib.controllers.*;
+import com.gamecopter.wongillalib.utils.ScriptInterpreter;
 import com.gamecopter.wongillalib.utils.Sound;
+
 
 public class WongillalibTest extends ApplicationAdapter {
     Stage stage;
     WongillaScript wongillaScript;
+    ScriptInterpreter scriptInterpreter;
 
     public void exit() {
         Gdx.app.exit();
     }
 
+    public WongillalibTest(ScriptInterpreter scriptInterpreter)
+    {
+        this.scriptInterpreter = scriptInterpreter;
+    }
+
     @Override
     public void create() {
-        stage = new Stage();
+
+        Matrix4 projection = new Matrix4();
+
+        // actual game screen size, not display size
+        projection.setToOrtho(0, 640, 480, 0, -1, 1);
+
+        SpriteBatch spriteBatch = new SpriteBatch();
+        spriteBatch.setProjectionMatrix(projection);
+
+        stage = new Stage(new StretchViewport(640,480),spriteBatch);
+
 
         wongillaScript = new WongillaScript(stage, this);
+        wongillaScript.setScriptInterpreter(this.scriptInterpreter);
         wongillaScript.loadLibraries();
 
 
@@ -30,6 +49,8 @@ public class WongillalibTest extends ApplicationAdapter {
         wongillaScript.addController("TouchPadOnMapController", new TouchPadOnMapController());
         wongillaScript.addController("TouchPadController", new TouchPadController());
         wongillaScript.addController("PlatformerController", new PlatformerController());
+        wongillaScript.addController("PythonTestController", new PythonTestController());
+
 
         Sound.load();
         wongillaScript.LoadStage();
@@ -37,6 +58,7 @@ public class WongillalibTest extends ApplicationAdapter {
 
         // process event handler such as click event handler
         Gdx.input.setInputProcessor(stage);
+
     }
 
     public void LoadStage() {
@@ -57,16 +79,16 @@ public class WongillalibTest extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         float delta = Gdx.graphics.getDeltaTime();
-//        accum += delta;
+        accum += delta;
 
-//        float Tick = 1.0f / 60.0f;
+        float Tick = 1.0f / 60.0f;
 
-  //      while (accum > Tick) {
+        while (accum > Tick) {
 
             wongillaScript.update();
 
-    //        accum -= Tick;
-      //  }
+            accum -= Tick;
+        }
 
 
         wongillaScript.draw();
@@ -80,7 +102,7 @@ public class WongillalibTest extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         // this code handles collision detection for buttons or UI actors when the screen size is changed.
-        stage.getViewport().update(width, height, true);
+        stage.getViewport().update(width, height, false);
     }
 
 

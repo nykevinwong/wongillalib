@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.XmlReader;
@@ -190,7 +191,34 @@ public class WongillaDefaultAttributeFactory extends DirectiveFactory<AttributeD
     }
 
 
+    public AttributeDirective CreateOnTouchDownToAttribute() {
+        AttributeDirective d = new AttributeDirective("OnTouchDown")
+        {
+            @Override
+            public void updateInstance(Actor a, XmlReader.Element iElement) {
+                final String OnTouchDown = iElement.getAttribute("OnTouchDown", null);
+                // add click event
+                if (OnTouchDown != null && !OnTouchDown.isEmpty()) {
+                    final String OnTouchDownToScene = OnTouchDown;
+                    final ScopeService scope = scopeService;
 
+                    a.addListener(new InputListener() {
+                        @Override
+                        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                            scope.eval(OnTouchDownToScene);
+                            return true;
+                        }
+                    });
+
+                }
+
+            }
+
+        };
+
+        return d;
+
+    }
 
     public AttributeDirective CreateOnClickToAttribute() {
         AttributeDirective d = new AttributeDirective("OnClickTo")
@@ -254,6 +282,8 @@ public class WongillaDefaultAttributeFactory extends DirectiveFactory<AttributeD
             CommonAttributes.add(CreateYAttribute());
             CommonAttributes.add(CreateShowAttribute());
             CommonAttributes.add(CreateOnClickToAttribute());
+            CommonAttributes.add(CreateOnTouchDownToAttribute());
+
             CommonAttributes.add(CreateActionAttribute());
             CommonAttributes.add(CreateValueAttribute());
 

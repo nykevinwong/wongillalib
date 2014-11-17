@@ -29,7 +29,7 @@ public class TouchPadController implements SceneEventListener {
     }
 
     @Override
-    public void enterScene(UIScene scene) {
+    public void enterScene(UIScene scene, WongillaScript wongillaScript) {
         image1 = scene.findActor("image1");
         touchpad = (Touchpad) scene.findActor("touchpad");
     }

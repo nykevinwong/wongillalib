@@ -9,6 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.width = 640;
         config.height = 480;
-		new LwjglApplication(new WongillalibTest(), config);
+
+		new LwjglApplication(new WongillalibTest(new DesktopPythonInterpreter()), config);
 	}
 }

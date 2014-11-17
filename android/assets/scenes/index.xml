@@ -8,6 +8,11 @@
         <table debug="table" fillX="true">
             <tr>
                 <td>
+                    <textbutton OnClickTo="python.xml">Python Script Test</textbutton>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <textbutton OnClickTo="$Root.LoadStage()">Reload stage.xml</textbutton>
                 </td>
             </tr>
@@ -70,7 +75,7 @@
             </tr>
             <tr>
                 <td>
-                    <textbutton OnClickTo="exit()">Quit</textbutton>
+                    <textbutton OnClickTo="$Root.exit()">Quit</textbutton>
                 </td>
             </tr>
         </table>

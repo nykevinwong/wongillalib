@@ -38,7 +38,7 @@ public class TouchPadOnMapController implements SceneEventListener {
     }
 
     @Override
-    public void enterScene(UIScene scene) {
+    public void enterScene(UIScene scene, WongillaScript wongillaScript) {
         gameMap = (TiledMapRender) scene.findActor("gameMap");
         touchpad = (Touchpad) scene.findActor("touchpad");
 

@@ -31,12 +31,7 @@ Tutorial
 =======
 
 Currently no step-by-step tutorial is available yet. 
-
-Please look into the source code if you want to do the followings:
-
--if you want to implement your own HTML-like directive to render your own Scene2D component, Please check the following implemention in CreateLabelDirective function at WongillaDefaultElementFactory.java: CreateLabelDirective(), CreateCheckboxDirective(), CreateTextFieldDirective(), CreateTouchPadDirective(), and etc.
-
--You can learn to how to create your own HTML-like directive and complicate Actor component by reading through each function in WongillaDefaultElementFactory.java and WongillaDefaultAttributeFactory.java 
+You can learn to how to create your own HTML-like directive and complicate Actor component by reading through each function in WongillaDefaultElementFactory.java and WongillaDefaultAttributeFactory.java 
 
 
 Code Example

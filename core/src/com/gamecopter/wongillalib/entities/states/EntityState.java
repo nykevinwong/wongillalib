@@ -7,6 +7,7 @@ import com.gamecopter.wongillalib.entities.EntityBase;
  */
 public abstract class EntityState {
     private boolean enabled;
+    public boolean jumpButton = false;
 
     public EntityState()
     {

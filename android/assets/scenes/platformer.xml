@@ -44,6 +44,9 @@
                 <td align="left" valign="bottom">
                     <touchpad name="touchpad" visible="false"></touchpad>
                 </td>
+                <td align="right" valign="bottom">
+                    <textbutton OnTouchDown="jump()">Jump</textbutton>
+                </td>
             </tr>
         </table>
 

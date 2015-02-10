@@ -15,15 +15,14 @@ import com.gamecopter.wongillalib.utils.Sound;
 public class WongillalibTest extends ApplicationAdapter {
     Stage stage;
     WongillaScript wongillaScript;
-    ScriptInterpreter scriptInterpreter;
 
     public void exit() {
         Gdx.app.exit();
     }
 
-    public WongillalibTest(ScriptInterpreter scriptInterpreter)
+    public WongillalibTest()
     {
-        this.scriptInterpreter = scriptInterpreter;
+
     }
 
     @Override
@@ -41,7 +40,7 @@ public class WongillalibTest extends ApplicationAdapter {
 
 
         wongillaScript = new WongillaScript(stage, this);
-        wongillaScript.setScriptInterpreter(this.scriptInterpreter);
+
         wongillaScript.loadLibraries();
 
 

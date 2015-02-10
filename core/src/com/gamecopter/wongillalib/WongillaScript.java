@@ -346,8 +346,8 @@ public class WongillaScript implements Disposable {
             if (table1 != null) {
                 Table table = (Table) table1;
 
-                if (table.getDebug() != Table.Debug.none)
-                    table.drawDebug(stage);
+            //    if (table.getDebug() != Table.Debug.none)
+                 //   table.drawDebug(stage);
             }
         }
     }

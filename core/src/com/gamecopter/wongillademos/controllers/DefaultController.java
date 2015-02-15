@@ -1,4 +1,4 @@
-package com.gamecopter.wongillalib.controllers;
+package com.gamecopter.wongillademos.controllers;
 
 /**
  * Created by Kevin Wong on 5/18/2014.

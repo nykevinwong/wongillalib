@@ -1,4 +1,4 @@
-package com.gamecopter.wongillalib.entities.states;
+package com.gamecopter.wongillalib.states;
 
 import com.gamecopter.wongillalib.entities.EntityBase;
 

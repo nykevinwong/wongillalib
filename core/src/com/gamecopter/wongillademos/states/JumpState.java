@@ -1,10 +1,11 @@
-package com.gamecopter.wongillalib.entities.states;
+package com.gamecopter.wongillademos.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.gamecopter.wongillalib.entities.EntityBase;
 import com.gamecopter.wongillalib.interfaces.TileCollisionEventListener;
+import com.gamecopter.wongillalib.states.EntityState;
 import com.gamecopter.wongillalib.utils.Sound;
 
 /**

@@ -1,4 +1,5 @@
-package com.gamecopter.wongillalib.controllers;
+package com.gamecopter.wongillademos.controllers;
+
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -8,17 +9,17 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.gamecopter.wongillademos.entities.AnimalEntity;
+import com.gamecopter.wongillademos.states.StartState;
+import com.gamecopter.wongillademos.states.WalkState;
 import com.gamecopter.wongillalib.UIScene;
 import com.gamecopter.wongillalib.WongillaScript;
-import com.gamecopter.wongillalib.entities.AnimalEntity;
 import com.gamecopter.wongillalib.entities.EntityBase;
-import com.gamecopter.wongillalib.entities.states.EntityState;
-import com.gamecopter.wongillalib.entities.states.StartState;
-import com.gamecopter.wongillalib.entities.states.WalkState;
 import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.interfaces.TileCollisionEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
+import com.gamecopter.wongillalib.states.EntityState;
 import com.gamecopter.wongillalib.ui.Animator;
 import com.gamecopter.wongillalib.ui.TiledMapRender;
 

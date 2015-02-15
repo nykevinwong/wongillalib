@@ -1,4 +1,5 @@
-package com.gamecopter.wongillalib.controllers;
+package com.gamecopter.wongillademos.controllers;
+
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -8,7 +9,6 @@ import com.gamecopter.wongillalib.interfaces.SceneEventListener;
 import com.gamecopter.wongillalib.services.AssetService;
 import com.gamecopter.wongillalib.services.ScopeService;
 import com.gamecopter.wongillalib.utils.ScriptInterpreter;
-
 
 import java.util.Random;
 

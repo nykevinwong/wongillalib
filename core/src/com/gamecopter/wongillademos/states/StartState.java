@@ -1,8 +1,9 @@
-package com.gamecopter.wongillalib.entities.states;
+package com.gamecopter.wongillademos.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.gamecopter.wongillalib.entities.EntityBase;
+import com.gamecopter.wongillalib.states.EntityState;
 
 /**
  * Created by Kevin Wong on 8/5/2014.
